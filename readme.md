@@ -5,6 +5,7 @@ for using pd + externals + native guis  as vst plugin
 binaries are here : https://sourceforge.net/projects/jygsdownloads/files/pdvst/
 
 CURRENT FEATURES
+
 -windows x32 and x64 only
 -multichannel audio in/out support
 -integrated vst midi-in
