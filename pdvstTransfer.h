@@ -28,6 +28,10 @@
 #define MAXBLOCKSIZE 256
 #define MAXSTRINGSIZE 4096
 #define MAXMIDIQUEUESIZE 1024
+#ifdef MIDIOUTENABLE
+    #define MAXMIDIOUTQUEUESIZE 1024
+ #endif // MIDIOUTENABLE
+
 
 typedef enum _pdvstParameterDataType
 {
@@ -91,6 +95,12 @@ typedef struct _pdvstTransferData
     pdvstMidiMessage midiQueue[MAXMIDIQUEUESIZE];
 	pdvstParameter guiState;
 	pdvstParameter plugName;
+    #ifdef MIDIOUTENABLE
+    int midiOutQueueSize;
+    int midiOutQueueUpdated;
+	pdvstMidiMessage midiOutQueue[MAXMIDIOUTQUEUESIZE];
+    #endif // MIDIOUTENABLE
+
 } pdvstTransferData;
 
 #endif

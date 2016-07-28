@@ -94,7 +94,8 @@ bool pdvstEditor::open(void *ptr)
     editWindow = CreateWindowEx(0, "pdvstWindowClass", "Window",
                                 WS_CHILD | WS_VISIBLE, 10, 10, 240, 55,
                                 (HWND)systemWindow, NULL, hInstance, NULL);
-    SetWindowLong(editWindow, GWL_USERDATA, (long)this);
+   SetWindowLongPtr(editWindow, GWLP_USERDATA, (LONG_PTR)this);
+
   /*  openButton = CreateWindowEx(0, "Button", "open", WS_CHILD | WS_VISIBLE,
                                 70, 24, 120, 25, editWindow, NULL, hInstance,
                                 NULL);
@@ -156,7 +157,7 @@ void pdvstEditor::idle()
 LONG WINAPI pdvstEditor::windowProc(HWND hwnd, UINT message,
                                     WPARAM wParam, LPARAM lParam)
 {
-    pdvstEditor *self = (pdvstEditor *)GetWindowLong(hwnd, GWL_USERDATA);
+    pdvstEditor *self = (pdvstEditor *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
     if (message == WM_COMMAND)
         {
             if (HIWORD(wParam) == BN_CLICKED &&

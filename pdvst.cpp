@@ -731,6 +731,14 @@ void pdvst::updatePdvstParameters()
             pdvstData->vstParameters[i].updated = 0;
         }
     }
+    // placer ici le midi out
+    #ifdef MIDIOUTENABLE
+    //sendVstEventsToHost
+    #endif // MIDIOUTENABLE
+
+
+
+
     ReleaseMutex(pdvstTransferMutex);
 }
 
