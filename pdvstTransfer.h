@@ -22,15 +22,19 @@
 #define __pdvstTransfer_H
 
 #include <stdio.h>
-
+#define VSTMIDIOUTENABLE
 #define MAXCHANNELS 16
 #define MAXPARAMETERS 128
 #define MAXBLOCKSIZE 256
 #define MAXSTRINGSIZE 4096
 #define MAXMIDIQUEUESIZE 1024
-#ifdef MIDIOUTENABLE
+
+#ifdef VSTMIDIOUTENABLE
     #define MAXMIDIOUTQUEUESIZE 1024
- #endif // MIDIOUTENABLE
+#endif // VSTMIDIOUTENABLE
+
+
+
 
 
 typedef enum _pdvstParameterDataType
@@ -95,11 +99,11 @@ typedef struct _pdvstTransferData
     pdvstMidiMessage midiQueue[MAXMIDIQUEUESIZE];
 	pdvstParameter guiState;
 	pdvstParameter plugName;
-    #ifdef MIDIOUTENABLE
+    #ifdef VSTMIDIOUTENABLE
     int midiOutQueueSize;
     int midiOutQueueUpdated;
 	pdvstMidiMessage midiOutQueue[MAXMIDIOUTQUEUESIZE];
-    #endif // MIDIOUTENABLE
+    #endif // VSTMIDIOUTENABLE
 
 } pdvstTransferData;
 

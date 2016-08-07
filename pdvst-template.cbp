@@ -46,11 +46,11 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="../../../vstsdk365_12_11_2015_build_67/VST3 SDK" />
-			<Add directory="../../../vstsdk365_12_11_2015_build_67/VST3 SDK/public.sdk/source/vst2.x" />
+			<Add directory="../../vstsdk365_12_11_2015_build_67/VST3 SDK/public.sdk/source/vst2.x" />
+			<Add directory="../../vstsdk365_12_11_2015_build_67/VST3 SDK" />
 		</Compiler>
-		<Unit filename="../../../vstsdk365_12_11_2015_build_67/VST3 SDK/public.sdk/source/vst2.x/audioeffect.cpp" />
-		<Unit filename="../../../vstsdk365_12_11_2015_build_67/VST3 SDK/public.sdk/source/vst2.x/audioeffectx.cpp" />
+		<Unit filename="../../vstsdk365_12_11_2015_build_67/VST3 SDK/public.sdk/source/vst2.x/audioeffect.cpp" />
+		<Unit filename="../../vstsdk365_12_11_2015_build_67/VST3 SDK/public.sdk/source/vst2.x/audioeffectx.cpp" />
 		<Unit filename="pdvst.cpp" />
 		<Unit filename="pdvstEditor.cpp" />
 		<Unit filename="pdvstMain.cpp" />

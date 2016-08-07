@@ -143,6 +143,22 @@ protected:
     void setSyncToVst(int value);
     //  {JYG
     DWORD timeFromStartup; // to measure time before vst::setProgram call
+    #ifdef VSTMIDIOUTENABLE
+    /** Stores a single midi event.
+   * The 'events' fields points to midiEvent.
+   */
+  VstEvents    midiOutEvents;
+  /** Last played note information is stored in midiEvent.
+   */
+  VstMidiEvent midiEvent;
+
+  // version alternative (http://stackoverflow.com/questions/359125/how-to-store-data-in-variable-length-arrays-without-causing-memory-corruption)
+  struct VstEvents *evnts;
+  VstMidiEvent midiEvnts[MAXMIDIOUTQUEUESIZE];
+
+    #endif //VSTMIDIOUTENABLE
+
+
     // JYG  }
 };
 

@@ -127,6 +127,54 @@ pdvst::pdvst(audioMasterCallback audioMaster)
 
         debugLog("   -has custom GUI-");
     }
+
+    #ifdef VSTMIDIOUTENABLE
+    // initializing structures for midiout support
+
+
+
+    evnts = (struct VstEvents*)malloc(sizeof(struct VstEvents) +
+                                  MAXMIDIOUTQUEUESIZE*sizeof(VstEvent*));
+    //initialisation du tableau  midiEvnts[MAXMIDIOUTQUEUESIZE];
+    for (int k=0; k<MAXMIDIOUTQUEUESIZE;k++)
+    {
+        // Constants to all midi messages we send (NoteOn and NoteOff)
+        midiEvnts[k].type = kVstMidiType;
+        midiEvnts[k].byteSize = sizeof(VstMidiEvent);
+        midiEvnts[k].deltaFrames = 0;
+        midiEvnts[k].flags  |= kVstMidiEventIsRealtime;
+        midiEvnts[k].detune = 0;
+        midiEvnts[k].noteOffVelocity = (char)0;
+        midiEvnts[k].reserved1 = 0;
+        midiEvnts[k].reserved2 = 0;
+        midiEvnts[k].midiData[3] = 0;
+        midiEvnts[k].noteOffset = 0;
+
+        //cast
+        evnts->events[k] = (VstEvent*)&midiEvnts[k];
+    }
+
+// Prepare for sending a single event at a time.
+    memset(&midiOutEvents, 0, sizeof(VstEvents));
+    memset(&midiEvent, 0, sizeof(VstMidiEvent));
+    midiOutEvents.numEvents = 1;
+    midiOutEvents.events[0] = (VstEvent*)&midiEvent;
+    // Constants to all midi messages we send (NoteOn and NoteOff)
+    midiEvent.type = kVstMidiType;
+    midiEvent.byteSize = sizeof(VstMidiEvent);
+    midiEvent.flags  = 1; // set kVstMidiEventIsRealtime
+    midiEvent.detune = 0;
+    midiEvent.noteOffVelocity = (char)0;
+    midiEvent.reserved1 = 0;
+    midiEvent.reserved2 = 0;
+    midiEvent.midiData[3] = 0;
+	  midiEvent.noteOffset = 0;
+
+
+     #endif //VSTMIDIOUTENABLE
+
+
+
         //timeBeginPeriod(1);
     // start pd.exe
     startPd();
@@ -281,33 +329,38 @@ void pdvst::startPd()
 
 void pdvst::sendGuiAction(int action)
 {
-    WaitForSingleObject(pdvstTransferMutex, 1000);
-    pdvstData->guiState.direction = PD_RECEIVE;
-    pdvstData->guiState.type = FLOAT_TYPE;
-    pdvstData->guiState.value.floatData = (float)action;
-    pdvstData->guiState.updated = 1;
-    ReleaseMutex(pdvstTransferMutex);
+    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+   {
+        pdvstData->guiState.direction = PD_RECEIVE;
+        pdvstData->guiState.type = FLOAT_TYPE;
+        pdvstData->guiState.value.floatData = (float)action;
+        pdvstData->guiState.updated = 1;
+        ReleaseMutex(pdvstTransferMutex);
+   }
 }
 
 void pdvst::sendPlugName(char * pName )     // pour envoyer le nom du plugin à puredata
 {
-    WaitForSingleObject(pdvstTransferMutex, 1000);
-
-    pdvstData->plugName.direction = PD_RECEIVE;
-    pdvstData->plugName.type = STRING_TYPE;
-    strcpy(pdvstData->plugName.value.stringData,pName);
-    pdvstData->plugName.updated = 1;
-    ReleaseMutex(pdvstTransferMutex);
+    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+    {
+        pdvstData->plugName.direction = PD_RECEIVE;
+        pdvstData->plugName.type = STRING_TYPE;
+        strcpy(pdvstData->plugName.value.stringData,pName);
+        pdvstData->plugName.updated = 1;
+        ReleaseMutex(pdvstTransferMutex);
+    }
 }
 
 void pdvst::setSyncToVst(int value)
 {
-    WaitForSingleObject(pdvstTransferMutex, 10000);
-    if (pdvstData->syncToVst != value)
+    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
     {
-        pdvstData->syncToVst = value;
+        if (pdvstData->syncToVst != value)
+        {
+            pdvstData->syncToVst = value;
+        }
+        ReleaseMutex(pdvstTransferMutex);
     }
-    ReleaseMutex(pdvstTransferMutex);
 }
 
 void pdvst::suspend()
@@ -394,15 +447,17 @@ void pdvst::getProgramName(char *name)
 
 void pdvst::setParameter(VstInt32 index, float value)
 {
-        if (vstParam[index] != value)
+    if (vstParam[index] != value)
     {
         vstParam[index] = value;
-        WaitForSingleObject(pdvstTransferMutex, 1000);
-        pdvstData->vstParameters[index].type = FLOAT_TYPE;
-        pdvstData->vstParameters[index].value.floatData = value;
-        pdvstData->vstParameters[index].direction = PD_RECEIVE;
-        pdvstData->vstParameters[index].updated = 1;
-        ReleaseMutex(pdvstTransferMutex);
+        if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+        {
+            pdvstData->vstParameters[index].type = FLOAT_TYPE;
+            pdvstData->vstParameters[index].value.floatData = value;
+            pdvstData->vstParameters[index].direction = PD_RECEIVE;
+            pdvstData->vstParameters[index].updated = 1;
+            ReleaseMutex(pdvstTransferMutex);
+        }
     }
 }
 
@@ -553,6 +608,44 @@ void pdvst::process(float **input, float **output, VstInt32 sampleFrames)
 
 void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrames)
 {
+
+
+                  /// placer ici le traitement midi out
+   // voir si c'est l'endroit le plus pertinent.
+   //  par exemple, ici (https://www.kvraudio.com/forum/viewtopic.php?t=359555)
+   // il est dit : "I am queuing my events, pooling them together in a single VstEvents struct
+  // and only calling processEvents once,
+
+      ///immediately prior to processReplacing".
+
+   #ifdef VSTMIDIOUTENABLE
+
+    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+    {
+        if (pdvstData->midiOutQueueUpdated)
+        {
+            // Faire une loop pour parcourir la midiqueue et recopier
+            //dans la structure midiOutEvents
+            int midiOutQueueSize=pdvstData->midiOutQueueSize;
+            for (int ka=0;ka<midiOutQueueSize;ka++)
+            {
+                midiEvnts[ka].midiData[0] =  pdvstData->midiOutQueue[ka].statusByte;
+                midiEvnts[ka].midiData[1] = pdvstData->midiOutQueue[ka].dataByte1;
+                midiEvnts[ka].midiData[2] = pdvstData->midiOutQueue[ka].dataByte2;
+            }
+            evnts->numEvents=midiOutQueueSize;
+
+            sendVstEventsToHost(evnts);  // rajouter un test de réussite
+            pdvstData->midiOutQueueUpdated=0;
+            pdvstData->midiOutQueueSize=0;
+
+             evnts->numEvents=0;
+        }
+      ReleaseMutex(pdvstTransferMutex);
+    }
+
+    #endif // VSTMIDIOUTENABLE
+
   int i, j, k, l;
     int framesOut = 0;
 
@@ -564,6 +657,7 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
     {
         setSyncToVst(1);
     }
+
 
     for (i = 0; i < sampleFrames; i++)
     {
@@ -584,6 +678,7 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
             // JYG: 10000 était une valeur trop élevée qui faisait planter ableton live
             // JYG }
             ResetEvent(pdProcEvent);
+
             for (k = 0; k < PDBLKSIZE; k++)
             {
                 for (l = 0; l < audioBuffer->nChannels; l++)
@@ -644,102 +739,102 @@ VstInt32 pdvst::processEvents(VstEvents* ev)
     long statusType;
     long statusChannel;
 
-    WaitForSingleObject(pdvstTransferMutex, 10000);
-	for (long i = 0; i < ev->numEvents; i++)
-	{
-		if ((ev->events[i])->type != kVstMidiType)
+    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+        // j'ai choisi une valeur d'attente courte (100 au lieu de 10000 dans pdvst 0.2)
+        // pour ne pas faire planter l'hôte, (notamment Live)
+        //(et notamment au chargement, quand le process PureData ne répond pas encore)
+    {
+        for (long i = 0; i < ev->numEvents; i++)
         {
-			continue;
+            if ((ev->events[i])->type != kVstMidiType)
+            {
+                continue;
+            }
+            event = (VstMidiEvent*)ev->events[i];
+            midiData = event->midiData;
+            statusType = midiData[0] & 0xF0;
+            statusChannel = midiData[0] & 0x0F;
+            pdvstData->midiQueue[pdvstData->midiQueueSize].statusByte = midiData[0];
+            pdvstData->midiQueue[pdvstData->midiQueueSize].dataByte1 = midiData[1];
+            pdvstData->midiQueue[pdvstData->midiQueueSize].dataByte2 = midiData[2];
+            if (statusType == 0x80)
+            {
+                // note off
+                pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
+                pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = NOTE_OFF;
+            }
+            else if (statusType == 0x90)
+            {
+                // note on
+                pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
+                pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = NOTE_ON;
+            }
+            else if (statusType == 0xA0)
+            {
+                // key pressure
+                pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
+                pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = KEY_PRESSURE;
+            }
+            else if (statusType == 0xB0)
+            {
+                // controller change
+                pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
+                pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = CONTROLLER_CHANGE;
+            }
+            else if (statusType == 0xC0)
+            {
+                // program change
+                pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
+                pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = PROGRAM_CHANGE;
+            }
+            else if (statusType == 0xD0)
+            {
+                // channel pressure
+                pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
+                pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = CHANNEL_PRESSURE;
+            }
+            else if (statusType == 0xE0)
+            {
+                // pitch bend
+                pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
+                pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = PITCH_BEND;
+            }
+            else
+            {
+                // something else
+                pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = OTHER;
+            }
+            pdvstData->midiQueueSize++;
+            event++;
         }
-        event = (VstMidiEvent*)ev->events[i];
-		midiData = event->midiData;
-		statusType = midiData[0] & 0xF0;
-        statusChannel = midiData[0] & 0x0F;
-        pdvstData->midiQueue[pdvstData->midiQueueSize].statusByte = midiData[0];
-        pdvstData->midiQueue[pdvstData->midiQueueSize].dataByte1 = midiData[1];
-        pdvstData->midiQueue[pdvstData->midiQueueSize].dataByte2 = midiData[2];
-        if (statusType == 0x80)
-        {
-            // note off
-            pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
-            pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = NOTE_OFF;
-        }
-        else if (statusType == 0x90)
-        {
-            // note on
-            pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
-            pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = NOTE_ON;
-        }
-        else if (statusType == 0xA0)
-        {
-            // key pressure
-            pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
-            pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = KEY_PRESSURE;
-        }
-        else if (statusType == 0xB0)
-        {
-            // controller change
-            pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
-            pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = CONTROLLER_CHANGE;
-        }
-        else if (statusType == 0xC0)
-        {
-            // program change
-            pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
-            pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = PROGRAM_CHANGE;
-        }
-        else if (statusType == 0xD0)
-        {
-            // channel pressure
-            pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
-            pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = CHANNEL_PRESSURE;
-        }
-        else if (statusType == 0xE0)
-        {
-            // pitch bend
-            pdvstData->midiQueue[pdvstData->midiQueueSize].channelNumber = statusChannel;
-            pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = PITCH_BEND;
-        }
-        else
-        {
-            // something else
-            pdvstData->midiQueue[pdvstData->midiQueueSize].messageType = OTHER;
-        }
-        pdvstData->midiQueueSize++;
-		event++;
-	}
-    pdvstData->midiQueueUpdated = 1;
-    ReleaseMutex(pdvstTransferMutex);
-	return 1;
+        pdvstData->midiQueueUpdated = 1;
+        ReleaseMutex(pdvstTransferMutex);
+        return 1;
+    }
+    else
+        return 0;
 }
 
 void pdvst::updatePdvstParameters()
 {
     int i;
-
-    WaitForSingleObject(pdvstTransferMutex, 10000);
-    for (i = 0; i < pdvstData->nParameters; i++)
+    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
     {
-        if (pdvstData->vstParameters[i].direction == PD_SEND && \
-            pdvstData->vstParameters[i].updated)
+        for (i = 0; i < pdvstData->nParameters; i++)
         {
-            if (pdvstData->vstParameters[i].type == FLOAT_TYPE)
+            if (pdvstData->vstParameters[i].direction == PD_SEND && \
+                pdvstData->vstParameters[i].updated)
             {
-                setParameterAutomated(i,
-                                      pdvstData->vstParameters[i].value.floatData);
+                if (pdvstData->vstParameters[i].type == FLOAT_TYPE)
+                {
+                    setParameterAutomated(i,
+                                          pdvstData->vstParameters[i].value.floatData);
+                }
+                pdvstData->vstParameters[i].updated = 0;
             }
-            pdvstData->vstParameters[i].updated = 0;
         }
+        ReleaseMutex(pdvstTransferMutex);
     }
-    // placer ici le midi out
-    #ifdef MIDIOUTENABLE
-    //sendVstEventsToHost
-    #endif // MIDIOUTENABLE
-
-
-
-
-    ReleaseMutex(pdvstTransferMutex);
 }
 
 pdVstBuffer::pdVstBuffer(int nChans)
