@@ -11,7 +11,7 @@ CURRENT FEATURES
 
 -multichannel audio in/out support
 
--integrated vst midi-in, experimental midi-out
+-integrated vst midi-in, experimental midi-out (v 0.0.33)
 
 TODO
 
