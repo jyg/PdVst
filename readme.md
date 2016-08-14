@@ -11,15 +11,13 @@ CURRENT FEATURES
 
 -multichannel audio in/out support
 
--integrated vst midi-in
+-integrated vst midi-in, experimental midi-out
 
 TODO
 
 -proper github project integration
 
 -(re)enable midi out support via midi device menu
-
--add integrated vst midi-out support
 
 -add play head information support
 
