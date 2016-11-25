@@ -28,6 +28,11 @@
 #define MAXSTRLEN 1024
 #define TIMEUNITPERSEC (32.*441000.)
 
+#define kVstTransportChanged      1
+#define	kVstTransportPlaying      2
+
+#define	kVstTransportRecording    8
+
 #ifdef VSTMIDIOUTENABLE
     EXTERN int midi_outhead, midi_outtail;
     typedef struct _midiqelem
@@ -45,6 +50,7 @@
     #endif /*MIDIQSIZE  */
 
     EXTERN t_midiqelem midi_outqueue[MIDIQSIZE];
+    EXTERN int msw_nmidiout;
 
 #endif // VSTMIDIOUTENABLE
 
@@ -55,9 +61,17 @@ typedef struct _vstParameterReceiver
     t_symbol *x_sym;
 }t_vstParameterReceiver;
 
+typedef struct _vstGuiNameReceiver
+{
+    t_object x_obj;
+}t_vstGuiNameReceiver;
+
+t_vstGuiNameReceiver *vstGuiNameReceiver;
+
 t_vstParameterReceiver *vstParameterReceivers[MAXPARAMETERS];
 
 t_class *vstParameterReceiver_class;
+t_class *vstGuiNameReceiver_class;
 
 char *pdvstTransferMutexName,
      *pdvstTransferFileMapName,
@@ -69,6 +83,7 @@ HANDLE vstHostProcess,
        pdvstTransferFileMap,
        vstProcEvent,
        pdProcEvent;
+       pdvstTimeInfo  timeInfo;
 
 int tokenizeCommandLineString(char *clString, char **tokens)
 {
@@ -150,7 +165,7 @@ void parseArgs(int argc, char **argv)
     }
 }
 
-void setPdvstGuiState(int state)
+int setPdvstGuiState(int state)
 {
     t_symbol *tempSym;
 
@@ -158,17 +173,24 @@ void setPdvstGuiState(int state)
     if (tempSym->s_thing)
     {
         pd_float(tempSym->s_thing, (float)state);
+        return 1;
     }
+    else
+        return 0;
 }
 
-void setPdvstPlugName(char* instanceName)
+
+int setPdvstPlugName(char* instanceName)
 {
     t_symbol *tempSym;
     tempSym = gensym("rvstplugname");
     if (tempSym->s_thing)
     {
         pd_symbol(tempSym->s_thing, gensym(instanceName));
+        return 1;
     }
+    else
+        return 0;
 }
 
 
@@ -203,6 +225,18 @@ void sendPdVstFloatParameter(t_vstParameterReceiver *x, t_float floatValue)
     ReleaseMutex(pdvstTransferMutex);
 }
 
+void sendPdVstGuiName(t_vstGuiNameReceiver *x, t_symbol *symbolValue)
+{
+    WaitForSingleObject(pdvstTransferMutex, INFINITE);
+    pdvstData->guiName.type = STRING_TYPE;
+    pdvstData->guiName.direction = PD_SEND;
+    pdvstData->guiName.updated = 1;
+    strcpy(pdvstData->guiName.value.stringData,symbolValue->s_name);
+
+    ReleaseMutex(pdvstTransferMutex);
+
+}
+
 void makePdvstParameterReceivers()
 {
     int i;
@@ -216,6 +250,15 @@ void makePdvstParameterReceivers()
         pd_bind(&vstParameterReceivers[i]->x_obj.ob_pd, gensym(string));
     }
 }
+
+void makePdvstGuiNameReceiver()
+{
+        vstGuiNameReceiver = (t_vstGuiNameReceiver *)pd_new(vstGuiNameReceiver_class);
+        pd_bind(&vstGuiNameReceiver->x_obj.ob_pd, gensym("guiName"));
+
+}
+
+
 
 void send_dacs(void)
 {
@@ -257,7 +300,7 @@ void scheduler_tick( void)
     sys_pollgui();
     sys_addhist(3);
 }
-
+/*
 int HFClock()
 {
     LARGE_INTEGER freq, now;
@@ -266,7 +309,7 @@ int HFClock()
     QueryPerformanceCounter(&now);
     return (int)((now.QuadPart * 1000) / freq.QuadPart);
 }
-
+*/
 
 int scheduler()
 {
@@ -283,8 +326,20 @@ int scheduler()
                                            sizeof(t_vstParameterReceiver),
                                            0,
                                            0);
+
     class_addfloat(vstParameterReceiver_class, (t_method)sendPdVstFloatParameter);
     makePdvstParameterReceivers();
+
+    vstGuiNameReceiver_class = class_new(gensym("vstGuiNameReceiver"),
+                                           0,
+                                           0,
+                                           sizeof(t_vstGuiNameReceiver),
+                                           0,
+                                           0);
+
+    class_addsymbol(vstGuiNameReceiver_class,(t_method)sendPdVstGuiName);
+    makePdvstGuiNameReceiver();
+
     *(get_sys_time_per_dsp_tick()) = (TIMEUNITPERSEC) * \
                                      ((double)*(get_sys_schedblocksize())) / \
                                      *(get_sys_dacsr());
@@ -323,16 +378,105 @@ int scheduler()
         if (pdvstData->guiState.direction == PD_RECEIVE && \
             pdvstData->guiState.updated)
         {
-            setPdvstGuiState((int)pdvstData->guiState.value.floatData);
-            pdvstData->guiState.updated = 0;
+            if(setPdvstGuiState((int)pdvstData->guiState.value.floatData))
+                pdvstData->guiState.updated=0;
         }
                 // JYG {  check for vstplug instance name
         if (pdvstData->plugName.direction == PD_RECEIVE && \
             pdvstData->plugName.updated)
         {
-            setPdvstPlugName((char*)pdvstData->plugName.value.stringData);
-            pdvstData->plugName.updated = 0;
+             if (setPdvstPlugName((char*)pdvstData->plugName.value.stringData))
+                pdvstData->plugName.updated=0;
         }
+
+        if (pdvstData->hostTimeInfo.updated)
+        {
+            pdvstData->hostTimeInfo.updated=0;
+            t_symbol *tempSym;
+
+            if (timeInfo.flags!=pdvstData->hostTimeInfo.flags)
+            {
+                timeInfo.flags=pdvstData->hostTimeInfo.flags;
+
+                tempSym = gensym("vstTimeInfo.flags");
+                if (tempSym->s_thing)
+                {
+                    pd_float(tempSym->s_thing, (float)timeInfo.flags);
+                }
+                else
+                {
+                    timeInfo.flags=0;
+                    pdvstData->hostTimeInfo.updated=1;  // keep flag as updated
+                 }
+
+            }
+
+            if ((timeInfo.flags&(kVstTransportChanged|kVstTransportPlaying|kVstTransportRecording))||(timeInfo.ppqPos!=(float)pdvstData->hostTimeInfo.ppqPos))
+            {
+                timeInfo.ppqPos=(float)pdvstData->hostTimeInfo.ppqPos;
+
+                tempSym = gensym("vstTimeInfo.ppqPos");
+                if (tempSym->s_thing)
+                {
+                    pd_float(tempSym->s_thing, timeInfo.ppqPos);
+                }
+                 else
+                {
+                    timeInfo.ppqPos=0.;
+                    pdvstData->hostTimeInfo.updated=1;  // keep flag as updated
+                 }
+            }
+            if ((timeInfo.flags&kVstTransportChanged)|(timeInfo.tempo!=(float)pdvstData->hostTimeInfo.tempo))
+            {
+                timeInfo.tempo=(float)pdvstData->hostTimeInfo.tempo;
+
+                tempSym = gensym("vstTimeInfo.tempo");
+                if (tempSym->s_thing)
+                {
+                    pd_float(tempSym->s_thing, timeInfo.tempo);
+                }
+                 else
+                 {
+                    timeInfo.tempo=0.;
+                    pdvstData->hostTimeInfo.updated=1;  // keep flag as updated
+                 }
+            }
+
+            if ((timeInfo.flags&kVstTransportChanged)|timeInfo.timeSigNumerator!=pdvstData->hostTimeInfo.timeSigNumerator)
+            {
+                timeInfo.timeSigNumerator=pdvstData->hostTimeInfo.timeSigNumerator;
+
+                tempSym = gensym("vstTimeInfo.timeSigNumerator");
+                if (tempSym->s_thing)
+                {
+                    pd_float(tempSym->s_thing, (float)timeInfo.timeSigNumerator);
+                }
+                 else
+                {
+                   timeInfo.timeSigNumerator=0;
+                    pdvstData->hostTimeInfo.updated=1;  // keep flag as updated
+                 }
+            }
+            if ((timeInfo.flags&kVstTransportChanged)| timeInfo.timeSigDenominator!=pdvstData->hostTimeInfo.timeSigDenominator)
+            {
+                timeInfo.timeSigDenominator=pdvstData->hostTimeInfo.timeSigDenominator;
+
+                tempSym = gensym("vstTimeInfo.timeSigDenominator");
+                if (tempSym->s_thing)
+                {
+                    pd_float(tempSym->s_thing, (float)timeInfo.timeSigDenominator);
+                }
+                 else
+                {
+                   timeInfo.timeSigDenominator=0;
+                    pdvstData->hostTimeInfo.updated=1;  // keep flag as updated
+                 }
+            }
+
+        }
+
+
+
             // JYG }
         for (i = 0; i < pdvstData->nParameters; i++)
         {
@@ -418,74 +562,76 @@ int scheduler()
 
         /// flush vstmidi out messages here
 #ifdef VSTMIDIOUTENABLE
-       int i=pdvstData->midiOutQueueSize;    // si la midiOutQueue n'a pas été vidée, rajouter des éléments à la fin de celle-ci
-        while (midi_outhead != midi_outtail)
+        if (msw_nmidiout==0)
         {
-           int statusType = midi_outqueue[midi_outtail].q_byte1 & 0xF0;
-           int statusChannel = midi_outqueue[midi_outtail].q_byte1 & 0x0F;
+            int i=pdvstData->midiOutQueueSize;    // si la midiOutQueue n'a pas été vidée, rajouter des éléments à la fin de celle-ci
+            while (midi_outhead != midi_outtail)
+            {
+               int statusType = midi_outqueue[midi_outtail].q_byte1 & 0xF0;
+               int statusChannel = midi_outqueue[midi_outtail].q_byte1 & 0x0F;
 
-            // faut il gérer midi_outqueue[midi_outtail].q_onebyte  ?
+                // faut il gérer midi_outqueue[midi_outtail].q_onebyte  ?
 
-            ///copie de la pile midi_outqueue dans la pile vst midiOutQueue
-            pdvstData->midiOutQueue[i].channelNumber= statusChannel;
-            pdvstData->midiOutQueue[i].statusByte = midi_outqueue[midi_outtail].q_byte1;
-            pdvstData->midiOutQueue[i].dataByte1=  midi_outqueue[midi_outtail].q_byte2;
-            pdvstData->midiOutQueue[i].dataByte2= midi_outqueue[midi_outtail].q_byte3;
+                ///copie de la pile midi_outqueue dans la pile vst midiOutQueue
+                pdvstData->midiOutQueue[i].channelNumber= statusChannel;
+                pdvstData->midiOutQueue[i].statusByte = midi_outqueue[midi_outtail].q_byte1;
+                pdvstData->midiOutQueue[i].dataByte1=  midi_outqueue[midi_outtail].q_byte2;
+                pdvstData->midiOutQueue[i].dataByte2= midi_outqueue[midi_outtail].q_byte3;
 
-            if (statusType == 0x90)
-                if (midi_outqueue[midi_outtail].q_byte3==0)
-                // note off
+                if (statusType == 0x90)
+                    if (midi_outqueue[midi_outtail].q_byte3==0)
+                    // note off
+                    {
+                        pdvstData->midiOutQueue[i].messageType = NOTE_OFF;
+                        pdvstData->midiOutQueue[i].statusByte = statusChannel|0x80;
+                    //    post("note_off[%d] : %d",i,midi_outqueue[midi_outtail].q_byte2);
+
+                    }
+
+                    else
+                    {
+                        // note on
+                        pdvstData->midiOutQueue[i].messageType = NOTE_ON;
+                    //post("note_on[%d] : %d",i,midi_outqueue[midi_outtail].q_byte2);
+
+                    }
+                else if (statusType == 0xA0)
+                    // key pressure
+                    pdvstData->midiOutQueue[i].messageType  = KEY_PRESSURE;
+                else if (statusType == 0xB0)
+                    // controller change
+                    pdvstData->midiOutQueue[i].messageType  = CONTROLLER_CHANGE;
+                else if (statusType == 0xC0)
+                    // program change
+                    pdvstData->midiOutQueue[i].messageType = PROGRAM_CHANGE;
+                else if (statusType == 0xD0)
+                    // channel pressure
+                    pdvstData->midiOutQueue[i].messageType = CHANNEL_PRESSURE;
+                else if (statusType == 0xE0)
+                    // pitch bend
+                    pdvstData->midiOutQueue[i].messageType = PITCH_BEND;
+                else
+                    // something else
+                    pdvstData->midiOutQueue[i].messageType  = OTHER;
+
+
+                midi_outtail  = (midi_outtail + 1 == MIDIQSIZE ? 0 : midi_outtail + 1);
+                i  = i + 1;
+                if (i>= MAXMIDIOUTQUEUESIZE)
+                    break;
+
+            }
+                if (i>0)
                 {
-                    pdvstData->midiOutQueue[i].messageType = NOTE_OFF;
-                    pdvstData->midiOutQueue[i].statusByte = statusChannel|0x80;
-                    post("note_off[%d] : %d",i,midi_outqueue[midi_outtail].q_byte2);
-
+                    pdvstData->midiOutQueueSize=i;
+                    pdvstData->midiOutQueueUpdated=1;
                 }
-
                 else
                 {
-                    // note on
-                    pdvstData->midiOutQueue[i].messageType = NOTE_ON;
-                post("note_on[%d] : %d",i,midi_outqueue[midi_outtail].q_byte2);
-
+                    pdvstData->midiOutQueueSize=0;
+                    pdvstData->midiOutQueueUpdated=0;
                 }
-            else if (statusType == 0xA0)
-                // key pressure
-                pdvstData->midiOutQueue[i].messageType  = KEY_PRESSURE;
-            else if (statusType == 0xB0)
-                // controller change
-                pdvstData->midiOutQueue[i].messageType  = CONTROLLER_CHANGE;
-            else if (statusType == 0xC0)
-                // program change
-                pdvstData->midiOutQueue[i].messageType = PROGRAM_CHANGE;
-            else if (statusType == 0xD0)
-                // channel pressure
-                pdvstData->midiOutQueue[i].messageType = CHANNEL_PRESSURE;
-            else if (statusType == 0xE0)
-                // pitch bend
-                pdvstData->midiOutQueue[i].messageType = PITCH_BEND;
-            else
-                // something else
-                pdvstData->midiOutQueue[i].messageType  = OTHER;
-
-
-            midi_outtail  = (midi_outtail + 1 == MIDIQSIZE ? 0 : midi_outtail + 1);
-            i  = i + 1;
-            if (i>= MAXMIDIOUTQUEUESIZE)
-                break;
-
         }
-            if (i>0)
-            {
-                pdvstData->midiOutQueueSize=i;
-                pdvstData->midiOutQueueUpdated=1;
-            }
-            else
-            {
-                pdvstData->midiOutQueueSize=0;
-                pdvstData->midiOutQueueUpdated=0;
-            }
-
 #endif  // VSTMIDIOUTENABLE
 
         // run at approx. real-time
@@ -501,7 +647,7 @@ int scheduler()
             if (WaitForSingleObject(vstProcEvent, 1000) == WAIT_TIMEOUT)
             {
                 // we have probably lost sync by now (1 sec)
-                WaitForSingleObject(pdvstTransferMutex, INFINITE);
+                WaitForSingleObject(pdvstTransferMutex, 100);
                 pdvstData->syncToVst = 0;
                 ReleaseMutex(pdvstTransferMutex);
             }

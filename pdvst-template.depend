@@ -1,0 +1,111 @@
+# depslib dependency file v1.0
+1458557391 source:c:\users\jyg\desktop\projets\2016\vstsdk365_12_11_2015_build_67\vst3 sdk\public.sdk\source\vst2.x\audioeffect.cpp
+	"audioeffect.h"
+	"aeffeditor.h"
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+
+1458557391 c:\users\jyg\desktop\projets\2016\vstsdk365_12_11_2015_build_67\vst3 sdk\public.sdk\source\vst2.x\audioeffect.h
+	"pluginterfaces/vst2.x/aeffect.h"
+
+1458557356 c:\users\jyg\desktop\projets\2016\vstsdk365_12_11_2015_build_67\vst3 sdk\pluginterfaces\vst2.x\aeffect.h
+	<string.h>
+	<stdint.h>
+
+1458760432 c:\users\jyg\desktop\projets\2016\vstsdk365_12_11_2015_build_67\vst3 sdk\public.sdk\source\vst2.x\aeffeditor.h
+	"audioeffectx.h"
+
+1458557391 c:\users\jyg\desktop\projets\2016\vstsdk365_12_11_2015_build_67\vst3 sdk\public.sdk\source\vst2.x\audioeffectx.h
+	"audioeffect.h"
+	"pluginterfaces/vst2.x/aeffectx.h"
+
+1458557356 c:\users\jyg\desktop\projets\2016\vstsdk365_12_11_2015_build_67\vst3 sdk\pluginterfaces\vst2.x\aeffectx.h
+	"aeffect.h"
+
+1458557391 source:c:\users\jyg\desktop\projets\2016\vstsdk365_12_11_2015_build_67\vst3 sdk\public.sdk\source\vst2.x\audioeffectx.cpp
+	"audioeffectx.h"
+	"aeffeditor.h"
+
+1460485208 source:c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvst-template\pdvst.cpp
+	"pdvst.hpp"
+	<malloc.h>
+	<process.h>
+	<windows.h>
+	<string.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	<ctype.h>
+
+1459434834 c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvst-template\pdvst.hpp
+	"audioeffectx.h"
+	"pdvstEditor.hpp"
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	<stdarg.h>
+	"pdvstTransfer.h"
+
+1459434988 c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvst-template\pdvsteditor.hpp
+	<stdio.h>
+	<windows.h>
+	"aeffeditor.h"
+
+1469292057 c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvst-template\pdvsttransfer.h
+	<stdio.h>
+
+1459435235 source:c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvst-template\pdvstmain.cpp
+	<windows.h>
+	<math.h>
+	"pdvst.hpp"
+	"audioeffect.h"
+	<windows.h>
+
+1459435283 source:c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvst-template\pdvsteditor.cpp
+	"pdvstEditor.hpp"
+	"pdvst.hpp"
+	<stdio.h>
+	<windows.h>
+
+1475579261 source:c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvst.cpp
+	"pdvst.hpp"
+	<malloc.h>
+	<process.h>
+	<windows.h>
+	<string.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	<ctype.h>
+
+1475488244 c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvst.hpp
+	"audioeffectx.h"
+	"pdvstEditor.hpp"
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	<stdarg.h>
+	"pdvstTransfer.h"
+
+1475579765 c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvsteditor.hpp
+	<stdio.h>
+	<windows.h>
+	"aeffeditor.h"
+
+1475479944 c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvsttransfer.h
+	<stdio.h>
+
+1475488815 source:c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvsteditor.cpp
+	"pdvstEditor.hpp"
+	"pdvst.hpp"
+	<stdio.h>
+	<windows.h>
+
+1459435235 source:c:\users\jyg\desktop\projets\2016\pdvst_new\pdvst-template\pdvstmain.cpp
+	<windows.h>
+	<math.h>
+	"pdvst.hpp"
+	"audioeffect.h"
+	<windows.h>
+

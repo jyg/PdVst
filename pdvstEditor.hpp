@@ -24,7 +24,12 @@
 #include <windows.h>
 #include "aeffeditor.h"
 
-
+   typedef struct _enumparms
+    {
+        HWND *ref;
+        char s[1024];
+        bool exact;
+    }enumparms;
 
 class pdvstEditor : public AEffEditor
 {
@@ -32,6 +37,7 @@ class pdvstEditor : public AEffEditor
 public:
     pdvstEditor(AudioEffect *effect);
     virtual ~pdvstEditor ();
+
     HWND openButton;;
     HWND editWindow;
     HWND pdGuiWindow;
@@ -44,13 +50,13 @@ protected:
     virtual void close();
     virtual void idle();
 
+
 private:
     void *systemWindow;
     bool systemWindowHidden;
     bool vstEditWindowHide;
-    HWND pdGui;
-    HWND pdConsole;
-
+    enumparms parms;
 
 };
 #endif
+static BOOL CALLBACK enumwnd(HWND hwnd,LPARAM lParam);

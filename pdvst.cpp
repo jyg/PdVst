@@ -49,6 +49,10 @@ extern pdvstProgram globalProgram[MAXPROGRAMS];
 
 int pdvst::referenceCount = 0;
 
+
+
+
+
 //-------------------------------------------------------------------------------------------------------
 AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
 {
@@ -127,6 +131,7 @@ pdvst::pdvst(audioMasterCallback audioMaster)
 
         debugLog("   -has custom GUI-");
     }
+    guiNameUpdated=false;
 
     #ifdef VSTMIDIOUTENABLE
     // initializing structures for midiout support
@@ -153,22 +158,6 @@ pdvst::pdvst(audioMasterCallback audioMaster)
         //cast
         evnts->events[k] = (VstEvent*)&midiEvnts[k];
     }
-
-// Prepare for sending a single event at a time.
-    memset(&midiOutEvents, 0, sizeof(VstEvents));
-    memset(&midiEvent, 0, sizeof(VstMidiEvent));
-    midiOutEvents.numEvents = 1;
-    midiOutEvents.events[0] = (VstEvent*)&midiEvent;
-    // Constants to all midi messages we send (NoteOn and NoteOff)
-    midiEvent.type = kVstMidiType;
-    midiEvent.byteSize = sizeof(VstMidiEvent);
-    midiEvent.flags  = 1; // set kVstMidiEventIsRealtime
-    midiEvent.detune = 0;
-    midiEvent.noteOffVelocity = (char)0;
-    midiEvent.reserved1 = 0;
-    midiEvent.reserved2 = 0;
-    midiEvent.midiData[3] = 0;
-	  midiEvent.noteOffset = 0;
 
 
      #endif //VSTMIDIOUTENABLE
@@ -222,6 +211,7 @@ void pdvst::debugLog(char *fmt, ...)
 
 void pdvst::startPd()
 {
+
     int i;
     STARTUPINFO si;
     PROCESS_INFORMATION pi;
@@ -329,7 +319,7 @@ void pdvst::startPd()
 
 void pdvst::sendGuiAction(int action)
 {
-    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+   WaitForSingleObject(pdvstTransferMutex, 10000);//  if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
    {
         pdvstData->guiState.direction = PD_RECEIVE;
         pdvstData->guiState.type = FLOAT_TYPE;
@@ -341,7 +331,7 @@ void pdvst::sendGuiAction(int action)
 
 void pdvst::sendPlugName(char * pName )     // pour envoyer le nom du plugin à puredata
 {
-    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+     WaitForSingleObject(pdvstTransferMutex, 10000);//if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
     {
         pdvstData->plugName.direction = PD_RECEIVE;
         pdvstData->plugName.type = STRING_TYPE;
@@ -353,7 +343,7 @@ void pdvst::sendPlugName(char * pName )     // pour envoyer le nom du plugin à p
 
 void pdvst::setSyncToVst(int value)
 {
-    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+   if (WaitForSingleObject(pdvstTransferMutex, 500)==WAIT_OBJECT_0)
     {
         if (pdvstData->syncToVst != value)
         {
@@ -361,6 +351,7 @@ void pdvst::setSyncToVst(int value)
         }
         ReleaseMutex(pdvstTransferMutex);
     }
+
 }
 
 void pdvst::suspend()
@@ -450,7 +441,7 @@ void pdvst::setParameter(VstInt32 index, float value)
     if (vstParam[index] != value)
     {
         vstParam[index] = value;
-        if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+        WaitForSingleObject(pdvstTransferMutex, 10000);// if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
         {
             pdvstData->vstParameters[index].type = FLOAT_TYPE;
             pdvstData->vstParameters[index].value.floatData = value;
@@ -528,99 +519,9 @@ VstInt32 pdvst::canDo(char* text)
 
 void pdvst::process(float **input, float **output, VstInt32 sampleFrames)
 {
-    int i, j, k, l;
-    int framesOut = 0;
-
-    if (!dspActive)
-    {
-        resume();
-    }
-    else
-    {
-        setSyncToVst(1);
-    }
-    for (i = 0; i < sampleFrames; i++)
-    {
-        for (j = 0; j < audioBuffer->nChannels; j++)
-        {
-            audioBuffer->in[j][audioBuffer->inFrameCount] = input[j][i];
-        }
-        (audioBuffer->inFrameCount)++;
-        // if enough samples to process then do it
-        if (audioBuffer->inFrameCount >= PDBLKSIZE)
-        {
-            audioBuffer->inFrameCount = 0;
-            updatePdvstParameters();
-            // wait for pd process event
-            WaitForSingleObject(pdProcEvent, 10000);
-            ResetEvent(pdProcEvent);
-            for (k = 0; k < PDBLKSIZE; k++)
-            {
-                for (l = 0; l < audioBuffer->nChannels; l++)
-                {
-                    while (audioBuffer->outFrameCount >= audioBuffer->size)
-                    {
-                        audioBuffer->resize(audioBuffer->size * 2);
-                    }
-                    // get pd processed samples
-                    audioBuffer->out[l][audioBuffer->outFrameCount] = pdvstData->samples[l][k];
-                    // put new samples in for processing
-                    pdvstData->samples[l][k] = audioBuffer->in[l][k];
-                }
-                (audioBuffer->outFrameCount)++;
-            }
-            pdvstData->sampleRate = (int)getSampleRate();
-            // signal vst process event
-            SetEvent(vstProcEvent);
-        }
-    }
-    // output pd processed samples
-    for (i = 0; i < sampleFrames; i++)
-    {
-        for (j = 0; j < audioBuffer->nChannels; j++)
-        {
-            if (audioBuffer->outFrameCount > 0)
-            {
-                output[j][i] += audioBuffer->out[j][i];
-            }
-            else
-            {
-                output[j][i] += 0;
-            }
-        }
-        if (audioBuffer->outFrameCount > 0)
-        {
-            audioBuffer->outFrameCount--;
-            framesOut++;
-        }
-    }
-    // shift any remaining buffered out samples
-    if (audioBuffer->outFrameCount > 0)
-    {
-        for (i = 0; i < audioBuffer->nChannels; i++)
-        {
-            memmove(&(audioBuffer->out[i][0]),
-                    &(audioBuffer->out[i][framesOut]),
-                    (audioBuffer->outFrameCount) * sizeof(float));
-        }
-    }
-}
-
-void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrames)
-{
-
-
-                  /// placer ici le traitement midi out
-   // voir si c'est l'endroit le plus pertinent.
-   //  par exemple, ici (https://www.kvraudio.com/forum/viewtopic.php?t=359555)
-   // il est dit : "I am queuing my events, pooling them together in a single VstEvents struct
-  // and only calling processEvents once,
-
-      ///immediately prior to processReplacing".
-
    #ifdef VSTMIDIOUTENABLE
 
-    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+     WaitForSingleObject(pdvstTransferMutex, 100);//if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
     {
         if (pdvstData->midiOutQueueUpdated)
         {
@@ -635,7 +536,7 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
             }
             evnts->numEvents=midiOutQueueSize;
 
-            sendVstEventsToHost(evnts);  // rajouter un test de réussite
+            sendVstEventsToHost(evnts);  /// TODO : rajouter un test de réussite
             pdvstData->midiOutQueueUpdated=0;
             pdvstData->midiOutQueueSize=0;
 
@@ -645,6 +546,33 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
     }
 
     #endif // VSTMIDIOUTENABLE
+
+
+  /*      // Get play head information
+      VstTimeInfo * info = getTimeInfo(
+      kVstTempoValid       |
+      kVstPpqPosValid      |
+      kVstTransportPlaying |
+      kVstTransportChanged |
+      kVstTransportCycleActive |
+      kVstTransportRecording   |
+      kVstAutomationWriting    |
+      kVstAutomationReading    |
+      0);
+
+   /*    if(infos)
+        {
+            m_playing_list.setFloat(0, m_playinfos.isPlaying);
+            m_playing_list.setFloat(1, m_playinfos.timeInSeconds);
+            sendMessageAnything(m_patch_tie, s_playing, m_playing_list);
+            m_measure_list.setFloat(0, m_playinfos.bpm);
+            m_measure_list.setFloat(1, m_playinfos.timeSigNumerator);
+            m_measure_list.setFloat(2, m_playinfos.timeSigDenominator);
+            m_measure_list.setFloat(3, m_playinfos.ppqPosition);
+            m_measure_list.setFloat(4, m_playinfos.ppqPositionOfLastBarStart);
+sendMessageAnything(m_patch_tie, s_measure, m_measure_list);
+
+*/
 
   int i, j, k, l;
     int framesOut = 0;
@@ -673,11 +601,13 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
             updatePdvstParameters();
             // wait for pd process event
             //   { JYG
+            //WaitForSingleObject(pdProcEvent, 10000);///int couldSync = WaitForSingleObject(pdProcEvent, 100)!= WAIT_TIMEOUT;
             WaitForSingleObject(pdProcEvent,100);
             //WaitForSingleObject(pdProcEvent, 10000);
-            // JYG: 10000 était une valeur trop élevée qui faisait planter ableton live
+            /// JYG: 10000 était une valeur trop élevée qui faisait planter ableton live 8.04, va savoir pourquoi
             // JYG }
-            ResetEvent(pdProcEvent);
+            ///if (couldSync)
+                ResetEvent(pdProcEvent);
 
             for (k = 0; k < PDBLKSIZE; k++)
             {
@@ -688,9 +618,207 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
                         audioBuffer->resize(audioBuffer->size * 2);
                     }
                     // get pd processed samples
-                    audioBuffer->out[l][audioBuffer->outFrameCount] = pdvstData->samples[l][k];
-                    // put new samples in for processing
-                    pdvstData->samples[l][k] = audioBuffer->in[l][k];
+                    ///if (couldSync)
+                    {
+                    // get pd processed samples
+                        audioBuffer->out[l][audioBuffer->outFrameCount] = pdvstData->samples[l][k];
+                        // put new samples in for processing
+                        pdvstData->samples[l][k] = audioBuffer->in[l][k];
+                    }
+
+                }
+                (audioBuffer->outFrameCount)++;
+            }
+            ///if (couldSync)
+                pdvstData->sampleRate = (int)getSampleRate();
+            // signal vst process event
+            SetEvent(vstProcEvent);
+        }
+    }
+    // output pd processed samples
+    for (i = 0; i < sampleFrames; i++)
+    {
+        for (j = 0; j < audioBuffer->nChannels; j++)
+        {
+            if (audioBuffer->outFrameCount > 0)
+            {
+                output[j][i] = audioBuffer->out[j][i];
+            }
+            else
+            {
+                output[j][i] = 0;
+            }
+        }
+        if (audioBuffer->outFrameCount > 0)
+        {
+            audioBuffer->outFrameCount--;
+            framesOut++;
+        }
+    }
+    // shift any remaining buffered out samples
+    if (audioBuffer->outFrameCount > 0)
+    {
+        for (i = 0; i < audioBuffer->nChannels; i++)
+        {
+            memmove(&(audioBuffer->out[i][0]),
+                    &(audioBuffer->out[i][framesOut]),
+                    (audioBuffer->outFrameCount) * sizeof(float));
+        }
+    }
+}
+
+DWORD WINAPI NotifySyncError(LPVOID lpParam) {
+    MessageBoxA(NULL, "Le processus PureData met du temps à répondre", "PdVST", MB_OK);
+    return 0;
+}
+
+void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrames)
+{
+   #ifdef VSTMIDIOUTENABLE
+
+    if (WaitForSingleObject(pdvstTransferMutex, 1000)==WAIT_OBJECT_0)
+    {
+        if (pdvstData->midiOutQueueUpdated)
+        {
+            // Faire une loop pour parcourir la midiqueue et recopier
+            //dans la structure midiOutEvents
+            int midiOutQueueSize=pdvstData->midiOutQueueSize;
+            for (int ka=0;ka<midiOutQueueSize;ka++)
+            {
+                midiEvnts[ka].midiData[0] =  pdvstData->midiOutQueue[ka].statusByte;
+                midiEvnts[ka].midiData[1] = pdvstData->midiOutQueue[ka].dataByte1;
+                midiEvnts[ka].midiData[2] = pdvstData->midiOutQueue[ka].dataByte2;
+            }
+            evnts->numEvents=midiOutQueueSize;
+
+            sendVstEventsToHost(evnts);  // rajouter un test de réussite
+            pdvstData->midiOutQueueUpdated=0;
+            pdvstData->midiOutQueueSize=0;
+
+             evnts->numEvents=0;
+        }
+        else
+        {
+            // Rajouter un sendVstEventsToHost(no_event) pour signifier PERIODIQUEMENT
+            // à Ableton Live qu'on est bien vivant et qu'on envoie du midi
+            // (pas à chaque tour de buffer comme ici)
+            midiEvnts[0].midiData[0]=0;
+            midiEvnts[0].midiData[1]=0;
+            midiEvnts[0].midiData[2]=0;
+            evnts->numEvents=1;
+            //sendVstEventsToHost(evnts);
+            }
+
+      ReleaseMutex(pdvstTransferMutex);
+    }
+
+    #endif // VSTMIDIOUTENABLE
+
+
+       // Get play head information
+      VstTimeInfo * infos = getTimeInfo(
+      kVstTempoValid       |
+      kVstPpqPosValid      |
+      kVstTransportPlaying |
+      kVstTransportChanged |
+      kVstTransportCycleActive |
+      kVstTransportRecording   |
+      kVstAutomationWriting    |
+      kVstAutomationReading    |
+      0);
+
+      if(infos)
+        {
+            if (WaitForSingleObject(pdvstTransferMutex, 100)==WAIT_OBJECT_0)
+            {
+
+                pdvstData->hostTimeInfo.updated=1;
+                //copying vstTimeInfo into pdvst transfer data structure
+                pdvstData->hostTimeInfo.samplePos=infos->samplePos;				///< current Position in audio samples (always valid)
+                pdvstData->hostTimeInfo.sampleRate=infos->sampleRate;				///< current Sample Rate in Herz (always valid)
+                pdvstData->hostTimeInfo.nanoSeconds=infos->nanoSeconds;				///< System Time in nanoseconds (10^-9 second)
+                pdvstData->hostTimeInfo.ppqPos=infos->ppqPos;					///< Musical Position, in Quarter Note (1.0 equals 1 Quarter Note)
+                pdvstData->hostTimeInfo.tempo=infos->tempo;					///< current Tempo in BPM (Beats Per Minute)
+                pdvstData->hostTimeInfo.barStartPos=infos->barStartPos;				///< last Bar Start Position, in Quarter Note
+                pdvstData->hostTimeInfo.cycleStartPos=infos->cycleStartPos;			///< Cycle Start (left locator), in Quarter Note
+                pdvstData->hostTimeInfo.cycleEndPos=infos->cycleEndPos;				///< Cycle End (right locator), in Quarter Note
+                pdvstData->hostTimeInfo.timeSigNumerator=(int)infos->timeSigNumerator;		///< Time Signature Numerator (e.g. 3 for 3/4)
+                pdvstData->hostTimeInfo.timeSigDenominator=(int)infos->timeSigDenominator;	///< Time Signature Denominator (e.g. 4 for 3/4)
+                pdvstData->hostTimeInfo.smpteOffset=(int)infos->smpteOffset;			///< SMPTE offset (in SMPTE subframes (bits; 1/80 of a frame)). The current SMPTE position can be calculated using #samplePos, #sampleRate, and #smpteFrameRate.
+                pdvstData->hostTimeInfo.smpteFrameRate=(int)infos->smpteFrameRate;		///< @see VstSmpteFrameRate
+                pdvstData->hostTimeInfo.samplesToNextClock=(int)infos->samplesToNextClock;	///< MIDI Clock Resolution (24 Per Quarter Note), can be negative (nearest clock)
+                pdvstData->hostTimeInfo.flags=(int)infos->flags;
+
+                ReleaseMutex(pdvstTransferMutex);
+            }
+        }
+
+    int i, j, k, l;
+    int framesOut = 0;
+
+    if (!dspActive)
+    {
+        resume();
+    }
+    else
+    {
+        setSyncToVst(1);
+    }
+
+
+    for (i = 0; i < sampleFrames; i++)
+    {
+        for (j = 0; j < audioBuffer->nChannels; j++)
+        {
+            audioBuffer->in[j][audioBuffer->inFrameCount] = input[j][i];
+        }
+        (audioBuffer->inFrameCount)++;
+        // if enough samples to process then do it
+        if (audioBuffer->inFrameCount >= PDBLKSIZE)
+        {
+            audioBuffer->inFrameCount = 0;
+            updatePdvstParameters();
+            // wait for pd process event
+            //   { JYG
+            int gotPdProcEvent = (WaitForSingleObject(pdProcEvent, 100)==WAIT_OBJECT_0);
+           // WaitForSingleObject(pdProcEvent,100);
+            //WaitForSingleObject(pdProcEvent, 10000);
+            // JYG: 10000 était une valeur trop élevée qui faisait planter ableton live
+            // JYG }
+            if (gotPdProcEvent)
+                {
+                    ResetEvent(pdProcEvent);
+                    syncDefeatNumber=0;
+                }
+            else if (syncDefeatNumber==50)
+            {
+                //afficher messageErreur
+                    CreateThread(NULL, 0, &NotifySyncError, NULL, 0, NULL);
+                    //startPd();
+                    syncDefeatNumber++;
+
+            }
+
+                else
+                    syncDefeatNumber++;
+
+            for (k = 0; k < PDBLKSIZE; k++)
+            {
+                for (l = 0; l < audioBuffer->nChannels; l++)
+                {
+                    while (audioBuffer->outFrameCount >= audioBuffer->size)
+                    {
+                        audioBuffer->resize(audioBuffer->size * 2);
+                    }
+                    // get pd processed samples
+                    if (gotPdProcEvent)
+                    {
+                    // get pd processed samples
+                        audioBuffer->out[l][audioBuffer->outFrameCount] = pdvstData->samples[l][k];
+                        // put new samples in for processing
+                        pdvstData->samples[l][k] = audioBuffer->in[l][k];
+                    }
+
                 }
                 (audioBuffer->outFrameCount)++;
             }
@@ -739,10 +867,9 @@ VstInt32 pdvst::processEvents(VstEvents* ev)
     long statusType;
     long statusChannel;
 
-    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
-        // j'ai choisi une valeur d'attente courte (100 au lieu de 10000 dans pdvst 0.2)
-        // pour ne pas faire planter l'hôte, (notamment Live)
-        //(et notamment au chargement, quand le process PureData ne répond pas encore)
+       WaitForSingleObject(pdvstTransferMutex, 1000);/// if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+        // valeur d'attente courte (1000 au lieu de 10000 dans pdvst 0.2)
+
     {
         for (long i = 0; i < ev->numEvents; i++)
         {
@@ -811,14 +938,17 @@ VstInt32 pdvst::processEvents(VstEvents* ev)
         ReleaseMutex(pdvstTransferMutex);
         return 1;
     }
-    else
+    ///else
         return 0;
 }
 
 void pdvst::updatePdvstParameters()
 {
     int i;
-    if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+
+
+    WaitForSingleObject(pdvstTransferMutex, 100);
+   // WaitForSingleObject(pdvstTransferMutex, 10000);///if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
     {
         for (i = 0; i < pdvstData->nParameters; i++)
         {
@@ -833,8 +963,27 @@ void pdvst::updatePdvstParameters()
                 pdvstData->vstParameters[i].updated = 0;
             }
         }
+
+        if (pdvstData->guiName.direction == PD_SEND && \
+            pdvstData->guiName.updated)
+        {
+            if (pdvstData->guiName.type == STRING_TYPE)
+            {
+                strcpy(guiName, pdvstData->guiName.value.stringData);
+
+                pdvstData->guiName.updated=0;
+                // signal to vesteditor that guiname is updated
+                guiNameUpdated=true;
+            }
+
+
+
+
+        }
+
         ReleaseMutex(pdvstTransferMutex);
     }
+
 }
 
 pdVstBuffer::pdVstBuffer(int nChans)

@@ -24,6 +24,8 @@
 #include <stdio.h>
 #include <signal.h>
 
+EXTERN int msw_nmidiout;
+
 typedef struct _midiqelem
 {
     double q_time;
@@ -102,11 +104,11 @@ static double sys_getmidiinrealtime( void)
 static void sys_putnext( void)
 {
     int portno = midi_outqueue[midi_outtail].q_portno;
-    if(sys_externalschedlib)
+    if(sys_externalschedlib&&(msw_nmidiout==0))
     {
-        post("appel de sys_putnext non annulé");
+        post("appel de sys_putnext annulé");
     }
-   // else
+    else
 #ifdef USEAPI_ALSA
     if (sys_midiapi == API_ALSA)
       {
@@ -140,7 +142,7 @@ void sys_pollmidioutqueue( void)
     if (midi_outhead == midi_outtail)
         db = 0;
 #endif
-   if (sys_externalschedlib)
+   if (sys_externalschedlib&&(msw_nmidiout==0))
     {}     // le "flush" de la midioutqueue se fait dans la fonction externe int scheduler()
    else
     while (midi_outhead != midi_outtail)

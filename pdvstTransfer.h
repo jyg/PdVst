@@ -84,6 +84,28 @@ typedef struct _pdvstMidiMessage
     char dataByte2;
 } pdvstMidiMessage;
 
+typedef struct _vstTimeInfo
+{
+    int updated;
+//-------------------------------------------------------------------------------------------------------
+	double samplePos;				///< current Position in audio samples (always valid)
+	double sampleRate;				///< current Sample Rate in Herz (always valid)
+	double nanoSeconds;				///< System Time in nanoseconds (10^-9 second)
+	double ppqPos;					///< Musical Position, in Quarter Note (1.0 equals 1 Quarter Note)
+	double tempo;					///< current Tempo in BPM (Beats Per Minute)
+	double barStartPos;				///< last Bar Start Position, in Quarter Note
+	double cycleStartPos;			///< Cycle Start (left locator), in Quarter Note
+	double cycleEndPos;				///< Cycle End (right locator), in Quarter Note
+	int timeSigNumerator;		///< Time Signature Numerator (e.g. 3 for 3/4)
+	int timeSigDenominator;	///< Time Signature Denominator (e.g. 4 for 3/4)
+	int smpteOffset;			///< SMPTE offset (in SMPTE subframes (bits; 1/80 of a frame)). The current SMPTE position can be calculated using #samplePos, #sampleRate, and #smpteFrameRate.
+	int smpteFrameRate;		///< @see VstSmpteFrameRate
+	int samplesToNextClock;	///< MIDI Clock Resolution (24 Per Quarter Note), can be negative (nearest clock)
+	int flags;					///< @see VstTimeInfoFlags
+//-------------------------------------------------------------------------------------------------------
+}pdvstTimeInfo;
+
+
 typedef struct _pdvstTransferData
 {
 	int active;
@@ -98,12 +120,15 @@ typedef struct _pdvstTransferData
 	pdvstParameter vstParameters[MAXPARAMETERS];
     pdvstMidiMessage midiQueue[MAXMIDIQUEUESIZE];
 	pdvstParameter guiState;
-	pdvstParameter plugName;
+	pdvstParameter plugName;  // transmitted by host
+	pdvstParameter guiName;   // transmitted by pd : name of gui window to be embedded
     #ifdef VSTMIDIOUTENABLE
     int midiOutQueueSize;
     int midiOutQueueUpdated;
 	pdvstMidiMessage midiOutQueue[MAXMIDIOUTQUEUESIZE];
+
     #endif // VSTMIDIOUTENABLE
+    pdvstTimeInfo  hostTimeInfo;
 
 } pdvstTransferData;
 

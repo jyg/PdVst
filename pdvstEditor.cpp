@@ -49,7 +49,7 @@ pdvstEditor::~pdvstEditor()
 
 bool pdvstEditor::getRect(ERect **erect)
 {
-    static ERect r = {0,0,70,270};
+    static ERect r = {0,0,300,300};
    *erect = &r;
     return (true);
 }
@@ -57,10 +57,10 @@ bool pdvstEditor::getRect(ERect **erect)
 
 bool pdvstEditor::open(void *ptr)
 {
-    ((pdvst *)this->effect)->sendGuiAction(1);
+
 
    systemWindow = ptr;
-  //  systemWindowHidden=false;
+
 
 
     WNDCLASS myWindowClass;
@@ -92,7 +92,7 @@ bool pdvstEditor::open(void *ptr)
  //((pdvst *)this->effect)->sendPlugName((char *) ((pdvst *)this->effect)->displayString );
     //////
     editWindow = CreateWindowEx(0, "pdvstWindowClass", "Window",
-                                WS_CHILD | WS_VISIBLE, 10, 10, 240, 55,
+                                WS_CHILD | WS_VISIBLE, 10, 10, 300,200,
                                 (HWND)systemWindow, NULL, hInstance, NULL);
    SetWindowLongPtr(editWindow, GWLP_USERDATA, (LONG_PTR)this);
 
@@ -100,18 +100,43 @@ bool pdvstEditor::open(void *ptr)
                                 70, 24, 120, 25, editWindow, NULL, hInstance,
                                 NULL);
                                 */
+
+    ((pdvst *)this->effect)->sendGuiAction(1);
   return (true);
 }
 
+
+
 void pdvstEditor::close()
 {
-  //  if (!pdGui)    SetParent(pdGui,NULL);
-    ((pdvst *)this->effect)->sendGuiAction(0);
-    if(vstEditWindowHide)
+
+
+   // if(vstEditWindowHide&&systemWindowHidden)
+       if (pdGuiWindow)
+       {
+        // detach pdGuiWindow from editWindow
+           SetParent(pdGuiWindow,NULL);
+           //Remove WS_CHILD style and add WS_POPUP style
+        DWORD style = GetWindowLong(pdGuiWindow,GWL_STYLE);
+      // style = style & ~(WS_POPUPWINDOW);
+        style = style | WS_POPUP;
+       style = style & ~(WS_CHILD);
+       style = style |(WS_SYSMENU);
+       style = style | (WS_BORDER);
+        SetWindowLong(pdGuiWindow,GWL_STYLE,style);
         systemWindowHidden=false;
+        pdGuiWindow=NULL;
+
+
+
+       }
 
     if (editWindow)
-        DestroyWindow(editWindow);
+    {
+          ((pdvst *)this->effect)->sendGuiAction(0);
+          DestroyWindow(editWindow);
+
+    }
 
     editWindow = NULL;
     useCount = 0;
@@ -120,36 +145,54 @@ void pdvstEditor::close()
 
 void pdvstEditor::idle()
 {
-    // JYG
-    if (vstEditWindowHide&&!systemWindowHidden)
-    {
 
-        // JYG :: masquer la fenêtre GUI créée par hôte VST pour laisser puredata le faire
-    SetWindowPos((HWND)systemWindow,HWND_TOPMOST,-300,-300,0,0,SWP_NOSIZE);  // déplacer la fenetre
-    SetWindowPos((HWND)systemWindow,NULL,0,0,0,0,SWP_NOZORDER|SWP_NOMOVE|SWP_NOSIZE|SWP_HIDEWINDOW); //masquer la fenêtre
-    systemWindowHidden=true;
+       // JYG :: masquer la fenêtre GUI créée par hôte VST pour laisser puredata le faire
+  //  SetWindowPos((HWND)systemWindow,HWND_TOPMOST,-300,-300,0,0,SWP_NOSIZE);  // déplacer la fenetre
+  //  SetWindowPos((HWND)systemWindow,NULL,0,0,0,0,SWP_NOZORDER|SWP_NOMOVE|SWP_NOSIZE|SWP_HIDEWINDOW); //masquer la fenêtre
+  //  systemWindowHidden=true;
+  // JYG
+                if (((pdvst *)this->effect)->guiNameUpdated)
+                if (editWindow)//&&!pdGuiWindow)
+            {
+           HWND tref=NULL;
+
+            parms.ref = &tref;
+            strcpy(parms.s,(char*)((pdvst *)this->effect)->guiName);
+
+            parms.exact = false;
+            EnumWindows(enumwnd,(LPARAM)&parms);
+            pdGuiWindow = tref;
 
 
-  /*  pdConsole=FindWindow(NULL,"Pd");
 
-    if (pdConsole){
-        SetParent(pdConsole,(HWND)systemWindow);
+           // pdGuiWindow=FindWindow(NULL,"Pd_Gain(gui).pd  - C:/Program Files (x86)/Ableton/Live 8.0.4/Program/pdvst");
+           //  pdGuiWindow=FindWindow(NULL,(char*)((pdvst *)this->effect)->guiName);
 
-    pdGui=FindWindow(NULL,"Pd_Gain(gui).pd  - C:/Program Files (x86)/Ableton/Live 8.0.4/Program/pdvst");
+             if (pdGuiWindow){
 
-     if (pdGui){
-        SetParent(pdGui,(HWND)systemWindow);
-        //Remove WS_POPUP style and add WS_CHILD style
-       DWORD style = GetWindowLong(pdGui,GWL_STYLE);
-      // style = style & ~(WS_POPUPWINDOW);
-        style = style & ~(WS_POPUP);
-       style = style | WS_CHILD;
-        SetWindowLong(pdGui,GWL_STYLE,style);
+               {
+                if(SetParent(pdGuiWindow,(HWND)editWindow))//systemWindow))
+                {
+                ((pdvst *)this->effect)->guiNameUpdated=0;
+                //Remove WS_POPUP style and add WS_CHILD style
+               DWORD style = GetWindowLong(pdGuiWindow,GWL_STYLE);
+              // style = style & ~(WS_POPUPWINDOW);
+                style = style & ~(WS_POPUP);
+               style = style | WS_CHILD;
+               style = style & ~(WS_SYSMENU);
+               style = style & ~(WS_BORDER);
+                SetWindowLong(pdGuiWindow,GWL_STYLE,style);
 
-        systemWindowHidden=true;}
-    }*/
+                systemWindowHidden=true;
+                }
+                }
 
-    }
+             }
+            }
+
+
+
+
 
     AEffEditor::idle();
 }
@@ -170,3 +213,21 @@ LONG WINAPI pdvstEditor::windowProc(HWND hwnd, UINT message,
     return (DefWindowProc(hwnd, message, wParam, lParam));
 }
 
+
+
+ BOOL CALLBACK  enumwnd(HWND hwnd,LPARAM lParam)
+{
+    enumparms *parms = (enumparms *)lParam;
+    char buf[256];
+    GetWindowText(hwnd,buf,sizeof buf);
+    if(parms->exact? strcmp(buf,parms->s) == 0 : strstr(buf,parms->s) != NULL) {
+        *parms->ref = hwnd;
+        return FALSE;
+    }
+    else {
+        // also search for child windows
+        EnumChildWindows(hwnd,enumwnd,lParam);
+        return TRUE;
+    }
+}
+// ***********

@@ -104,6 +104,8 @@ public:
 
  LPTSTR displayString;//= new TCHAR[MAXSTRINGSIZE];
 
+   HWND pdGui;
+
 protected:
     static int referenceCount;
     void debugLog(char *fmt, ...);
@@ -136,6 +138,8 @@ protected:
     char pdvstTransferFileMapName[1024];
     char vstProcEventName[1024];
     char pdProcEventName[1024];
+    char guiName[1024];
+    bool guiNameUpdated;  // used to signal to editor that the parameter guiName has changed
     void startPd();
     void parseSetupFile();
 
@@ -157,7 +161,7 @@ protected:
   VstMidiEvent midiEvnts[MAXMIDIOUTQUEUESIZE];
 
     #endif //VSTMIDIOUTENABLE
-
+    int syncDefeatNumber;
 
     // JYG  }
 };
