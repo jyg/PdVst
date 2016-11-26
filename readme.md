@@ -1,11 +1,18 @@
-# pdvst 
+# PDVST 
 Revival of J.Sarlo's pdvst project
 
 for using pd + externals + native guis  as vst plugin
 
 binaries are here : https://sourceforge.net/projects/jygsdownloads/files/pdvst/
 
-CURRENT FEATURES
+# How does it work ?
+
+The pdvst project has two part : 
+1) a vst-plugin (pdvst-template.dll), compiled within code:blocks with project file pdvst-template.cbp
+2) a custom version of puredata with external scheduler (vstschedlib.dll), compiled with modified makefile, inside subfolder "pure-data" 
+(https://github.com/jyg/pure-data/tree/master/pdvst/pure-data)
+
+#CURRENT FEATURES
 
 -windows x32 and x64 only
 
@@ -13,7 +20,7 @@ CURRENT FEATURES
 
 -integrated vst midi-in, experimental midi-out (v 0.0.33)
 
-TODO
+#TODO
 
 -proper github project integration
 
