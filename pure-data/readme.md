@@ -1,3 +1,8 @@
-Those are modified pd source files (0.46-7) for using pd with ext scheduler (vst_schedlib)
+# pdvstschedlib (external scheduler) for using pure-data inside vst-host
 
-TO DO : check against current version 0.47-x
+testing in progress with pure-data 0.47-1, compiled with minGW 
+
+# Instructions
+put makefile.pdvst ito pure-data/src folder.
+
+run msys from  /src folder, type make -f makefile.pdvst

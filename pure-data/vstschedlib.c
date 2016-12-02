@@ -23,6 +23,7 @@
 #include <io.h>
 #include <stdio.h>
 #include "m_pd.h"
+#include "s_stuff.h"
 #include "../../../pdvstTransfer.h"
 #define MAXARGS 1024
 #define MAXSTRLEN 1024
@@ -50,7 +51,8 @@
     #endif /*MIDIQSIZE  */
 
     EXTERN t_midiqelem midi_outqueue[MIDIQSIZE];
-    EXTERN int msw_nmidiout;
+    //EXTERN int msw_nmidiout;
+    EXTERN int msw_nmidiout=1;
 
 #endif // VSTMIDIOUTENABLE
 
@@ -670,7 +672,7 @@ int scheduler()
     return 1;
 }
 
-int _main(char *flags)
+int pd_extern_sched(char *flags)
 {
     int i, argc;
     char *argv[MAXARGS];
