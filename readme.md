@@ -122,6 +122,7 @@ further with the VST host. Special Pd send/receive symbols can be used in your P
 For an example, see the pd-gain.pd file.
 
 * rvstparameter<integer>
+
   Use this symbol to receive parameter values from the VST host. Values will be floats 
   between 0 and 1 inclusive. 
 
