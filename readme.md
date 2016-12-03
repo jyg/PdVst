@@ -121,29 +121,23 @@ For purposes such as GUI interaction and VST automation, your patch may need to 
 further with the VST host. Special Pd send/receive symbols can be used in your Pd patch. 
 For an example, see the pd-gain.pd file.
 
-* rvstparameter<integer>
-
-  Use this symbol to receive parameter values from the VST host. Values will be floats 
+* rvstparameter<integer> : Use this symbol to receive parameter values from the VST host. Values will be floats 
   between 0 and 1 inclusive. 
 
-* svstparameter<integer>
-  Use this symbol to send parameter values to the VST host. Values should be floats 
+* svstparameter<integer> : Use this symbol to send parameter values to the VST host. Values should be floats 
   between 0 and 1 inclusive. 
 
-* rvstopengui
-  Use this symbol to receive notification that the patch's GUI should be opened or closed. 
+* rvstopengui : Use this symbol to receive notification that the patch's GUI should be opened or closed. 
   The value will be either 1 or 0. 
   
-* rvstplugname
-  Use this symbol to receive plug & instance name from host
+* rvstplugname : Use this symbol to receive plug & instance name from host
  
-* vstTimeInfo (play head information support)
-  vstTimeInfo.ppqPos, vstTimeInfo.tempo, vstTimeInfo.timeSigNumerator, vstTimeInfo.timeSigDenominator, vstTimeInfo.flags
-  are experimental receivers for getting time infos from host. Names should change in the future.
+* vstTimeInfo (play head information support) : 
+
+vstTimeInfo.ppqPos, vstTimeInfo.tempo, vstTimeInfo.timeSigNumerator, vstTimeInfo.timeSigDenominator, vstTimeInfo.flags are experimental receivers for getting time infos from host. Names should change in the future.
 
 * EXPERIMENTAL
-  guiName
-  Use this symbol to send and signal to the host the name of the gui-extra window to embed.
+  guiName : Use this symbol to send and signal to the host the name of the gui-extra window to embed.
   
   
 Note: for most VST hosts, parameters for VST instruments are recorded as sysex data, so be 
