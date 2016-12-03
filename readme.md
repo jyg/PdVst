@@ -25,8 +25,7 @@ your current pure-data installation (>= 0.47-1) with your favorite externals)
    of your current pure-data installation
    
 2) Copy the pdvst folder to the directory that contains the 
-   application (e.g. Cubase.exe) that you want to use PdVst with.
-   (e.g. c:\Program Files\Steinberg\Cubase VST\)
+   application (e.g. Cubase.exe) that you want to use PdVst with.(e.g. c:\Program Files\Steinberg\Cubase VST\).
    This folder will contain the .pdv and .pd files.
    NOTE : The location of this folder should change in the future.
    
@@ -122,25 +121,26 @@ For purposes such as GUI interaction and VST automation, your patch may need to 
 further with the VST host. Special Pd send/receive symbols can be used in your Pd patch. 
 For an example, see the pd-gain.pd file.
 
-  rvstparameter<integer>
+* rvstparameter<integer>
   Use this symbol to receive parameter values from the VST host. Values will be floats 
   between 0 and 1 inclusive. 
 
-  svstparameter<integer>
+* svstparameter<integer>
   Use this symbol to send parameter values to the VST host. Values should be floats 
   between 0 and 1 inclusive. 
 
-  rvstopengui
+* rvstopengui
   Use this symbol to receive notification that the patch's GUI should be opened or closed. 
   The value will be either 1 or 0. 
   
-  rvstplugname
+* rvstplugname
   Use this symbol to receive plug & instance name from host
  
+* vstTimeInfo (play head information support)
   vstTimeInfo.ppqPos, vstTimeInfo.tempo, vstTimeInfo.timeSigNumerator, vstTimeInfo.timeSigDenominator, vstTimeInfo.flags
-  Those are experimental features for receiving time infos from host. Names should change in the future.
+  are experimental receivers for getting time infos from host. Names should change in the future.
 
-EXPERIMENTAL
+* EXPERIMENTAL
   guiName
   Use this symbol to send and signal to the host the name of the gui-extra window to embed.
   
