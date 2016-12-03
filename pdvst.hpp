@@ -160,8 +160,10 @@ protected:
   struct VstEvents *evnts;
   VstMidiEvent midiEvnts[MAXMIDIOUTQUEUESIZE];
 
+    int nbFramesWithoutMidiOutEvent;
     #endif //VSTMIDIOUTENABLE
     int syncDefeatNumber;
+
 
     // JYG  }
 };

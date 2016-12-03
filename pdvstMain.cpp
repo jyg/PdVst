@@ -36,6 +36,7 @@ char globalVstParamName[MAXPARAMS][MAXSTRLEN];
 char globalPluginPath[MAXFILENAMELEN];
 char globalPluginName[MAXSTRLEN];
 char globalPdFile[MAXFILENAMELEN];
+char globalPureDataPath[MAXFILENAMELEN];
 bool globalCustomGui = false;
 bool globalVstEditWindowHide = true;
 pdvstProgram globalProgram[MAXPROGRAMS];
@@ -191,9 +192,18 @@ void parseSetupFile()
                 // number of channels
                 if (strcmp(param, "channels") == 0)
                     globalNChannels = atoi(value);
+
                 // main PD patch
                 if (strcmp(param, "main") == 0)
-                    strcpy(globalPdFile, strlwr(value));
+                {
+                     strcpy(globalPdFile, strlwr(value));
+
+                }
+                if (strcmp(param, "pdpath") == 0)
+                 {
+                     strcpy(globalPureDataPath, strlwr(value));
+
+                }
                 // vst plugin ID
                 if (strcmp(param, "id") == 0)
                 {

@@ -33,9 +33,9 @@
 #define	kVstTransportPlaying      2
 
 #define	kVstTransportRecording    8
-
 #ifdef VSTMIDIOUTENABLE
-    EXTERN int midi_outhead, midi_outtail;
+    EXTERN int midi_outhead;
+    int _midi_outtail=0;   // _midi_outtail defined locally
     typedef struct _midiqelem
     {
         double q_time;
@@ -52,7 +52,7 @@
 
     EXTERN t_midiqelem midi_outqueue[MIDIQSIZE];
     //EXTERN int msw_nmidiout;
-    EXTERN int msw_nmidiout=1;
+    int msw_nmidiout=0;
 
 #endif // VSTMIDIOUTENABLE
 
@@ -567,26 +567,26 @@ int scheduler()
         if (msw_nmidiout==0)
         {
             int i=pdvstData->midiOutQueueSize;    // si la midiOutQueue n'a pas été vidée, rajouter des éléments à la fin de celle-ci
-            while (midi_outhead != midi_outtail)
+            while (midi_outhead != _midi_outtail)
             {
-               int statusType = midi_outqueue[midi_outtail].q_byte1 & 0xF0;
-               int statusChannel = midi_outqueue[midi_outtail].q_byte1 & 0x0F;
+               int statusType = midi_outqueue[_midi_outtail].q_byte1 & 0xF0;
+               int statusChannel = midi_outqueue[_midi_outtail].q_byte1 & 0x0F;
 
-                // faut il gérer midi_outqueue[midi_outtail].q_onebyte  ?
+                // faut il gérer midi_outqueue[_midi_outtail].q_onebyte  ?
 
                 ///copie de la pile midi_outqueue dans la pile vst midiOutQueue
                 pdvstData->midiOutQueue[i].channelNumber= statusChannel;
-                pdvstData->midiOutQueue[i].statusByte = midi_outqueue[midi_outtail].q_byte1;
-                pdvstData->midiOutQueue[i].dataByte1=  midi_outqueue[midi_outtail].q_byte2;
-                pdvstData->midiOutQueue[i].dataByte2= midi_outqueue[midi_outtail].q_byte3;
+                pdvstData->midiOutQueue[i].statusByte = midi_outqueue[_midi_outtail].q_byte1;
+                pdvstData->midiOutQueue[i].dataByte1=  midi_outqueue[_midi_outtail].q_byte2;
+                pdvstData->midiOutQueue[i].dataByte2= midi_outqueue[_midi_outtail].q_byte3;
 
                 if (statusType == 0x90)
-                    if (midi_outqueue[midi_outtail].q_byte3==0)
+                    if (midi_outqueue[_midi_outtail].q_byte3==0)
                     // note off
                     {
                         pdvstData->midiOutQueue[i].messageType = NOTE_OFF;
                         pdvstData->midiOutQueue[i].statusByte = statusChannel|0x80;
-                    //    post("note_off[%d] : %d",i,midi_outqueue[midi_outtail].q_byte2);
+                    //    post("note_off[%d] : %d",i,midi_outqueue[_midi_outtail].q_byte2);
 
                     }
 
@@ -594,7 +594,7 @@ int scheduler()
                     {
                         // note on
                         pdvstData->midiOutQueue[i].messageType = NOTE_ON;
-                    //post("note_on[%d] : %d",i,midi_outqueue[midi_outtail].q_byte2);
+                    //post("note_on[%d] : %d",i,midi_outqueue[_midi_outtail].q_byte2);
 
                     }
                 else if (statusType == 0xA0)
@@ -617,7 +617,7 @@ int scheduler()
                     pdvstData->midiOutQueue[i].messageType  = OTHER;
 
 
-                midi_outtail  = (midi_outtail + 1 == MIDIQSIZE ? 0 : midi_outtail + 1);
+                _midi_outtail  = (_midi_outtail + 1 == MIDIQSIZE ? 0 : _midi_outtail + 1);
                 i  = i + 1;
                 if (i>= MAXMIDIOUTQUEUESIZE)
                     break;

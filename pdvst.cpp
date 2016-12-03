@@ -29,6 +29,11 @@
 #include <math.h>
 #include <time.h>
 #include <ctype.h>
+#include <sys/stat.h>
+
+#ifdef _MSC_VER
+#define stat _stat
+#endif
 
 extern HINSTANCE hInstance;
 extern bool globalDebug;
@@ -42,12 +47,14 @@ extern char globalVstParamName[MAXPARAMETERS][MAXSTRLEN];
 extern char globalPluginPath[MAXFILENAMELEN];
 extern char globalPluginName[MAXSTRLEN];
 extern char globalPdFile[MAXFILENAMELEN];
+extern char globalPureDataPath[MAXFILENAMELEN];
 extern bool globalCustomGui;
 extern bool globalVstEditWindowHide;
 extern bool globalIsASynth;
 extern pdvstProgram globalProgram[MAXPROGRAMS];
 
 int pdvst::referenceCount = 0;
+
 
 
 
@@ -136,7 +143,7 @@ pdvst::pdvst(audioMasterCallback audioMaster)
     #ifdef VSTMIDIOUTENABLE
     // initializing structures for midiout support
 
-
+    nbFramesWithoutMidiOutEvent=0;
 
     evnts = (struct VstEvents*)malloc(sizeof(struct VstEvents) +
                                   MAXMIDIOUTQUEUESIZE*sizeof(VstEvent*));
@@ -260,7 +267,18 @@ void pdvst::startPd()
     {
         strcpy(debugString, " -nogui");
     }
-    sprintf(commandLineArgs, "\"%s\\pd\\bin\\pd.exe\"", pluginPath);
+    if (strcmp(globalPureDataPath, "") == 0)  // unspecified puredata path. Defaults to pluginPath
+        sprintf(commandLineArgs, "\"%s\\pd\\bin\\pd.exe\"", pluginPath);
+    else
+        {
+            sprintf(commandLineArgs, "\"%s\\bin\\pd.exe\"", globalPureDataPath);
+            // check validity of pd.exe path
+            /// condition if toujours vérifiée. Peut-être utiliser sys_bash_filename en amont ?
+          /*  struct stat statbuf;
+            if (stat(commandLineArgs, &statbuf) < 0)
+                // if failed, use defaults
+                sprintf(commandLineArgs, "\"%s\\pd\\bin\\pd.exe\"", pluginPath);*/
+        }
 
     sprintf(commandLineArgs,
             "%s%s",
@@ -699,15 +717,21 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
         }
         else
         {
-            // Rajouter un sendVstEventsToHost(no_event) pour signifier PERIODIQUEMENT
+            // Envoyer périodiquement un sendVstEventsToHost(no_event) pour signifier
             // à Ableton Live qu'on est bien vivant et qu'on envoie du midi
-            // (pas à chaque tour de buffer comme ici)
-            midiEvnts[0].midiData[0]=0;
-            midiEvnts[0].midiData[1]=0;
-            midiEvnts[0].midiData[2]=0;
-            evnts->numEvents=1;
-            //sendVstEventsToHost(evnts);
+            // (tous les 120 tours de buffer)
+            nbFramesWithoutMidiOutEvent++;
+            if (nbFramesWithoutMidiOutEvent>120)
+            {
+                nbFramesWithoutMidiOutEvent=0;
+                midiEvnts[0].midiData[0]=0;
+                midiEvnts[0].midiData[1]=0;
+                midiEvnts[0].midiData[2]=0;
+                evnts->numEvents=1;
+                sendVstEventsToHost(evnts);
             }
+
+        }
 
       ReleaseMutex(pdvstTransferMutex);
     }
@@ -793,7 +817,7 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
             else if (syncDefeatNumber==50)
             {
                 //afficher messageErreur
-                    CreateThread(NULL, 0, &NotifySyncError, NULL, 0, NULL);
+                    //CreateThread(NULL, 0, &NotifySyncError, NULL, 0, NULL);
                     //startPd();
                     syncDefeatNumber++;
 
@@ -957,8 +981,11 @@ void pdvst::updatePdvstParameters()
             {
                 if (pdvstData->vstParameters[i].type == FLOAT_TYPE)
                 {
+                    //beginEdit (i);
                     setParameterAutomated(i,
                                           pdvstData->vstParameters[i].value.floatData);
+                    //endEdit(i);
+                    updateDisplay ();
                 }
                 pdvstData->vstParameters[i].updated = 0;
             }
