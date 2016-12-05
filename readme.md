@@ -20,17 +20,17 @@ An instance of Pd.exe is started and opens the Pd patch file whose name was foun
 This new version doesn't need a custom version of pure-data. You can use 
 your current pure-data installation (>= 0.47-1) with your favorite externals). 
 
-1) Copy vstschedlib.dll & pthreadGC-3.dll to \bin directory 
+* Copy vstschedlib.dll & pthreadGC-3.dll to \bin directory 
    of your current pure-data installation
      
-2) Copy your plugin .dll file (e.g. Pd_Gain.dll) to the vst plugins directory
+* Copy your plugin .dll file (e.g. Pd_Gain.dll) to the vst plugins directory
    for the application (e.g. c:\Program Files (x86)\Steinberg\Cubase VST\VstPlugins\)
 
-3) New way : in the vst plugin directory, create a subdir with the name of your plugin
+* New way : in the vst plugin directory, create a subdir with the name of your plugin
    (e.g. c:\Program Files (x86)\Steinberg\Cubase VST\VstPlugins\Pd_Gain\).
    This folder will contain the .pdv and .pd files associated to your plugin.
    
-   Old way : create a pdvst folder in the directory that contains the 
+* Old way : create a pdvst folder in the directory that contains the 
    application (e.g. Reaper.exe) that you want to use PdVst with.
    (e.g. c:\Program Files\REAPER\pdvst\). This folder will contain the .pdv and .pd files, and
    optionnally a copy of pure-data application  (inside c:\Program Files\REAPER\pdvst\pd\).
@@ -40,12 +40,12 @@ your current pure-data installation (>= 0.47-1) with your favorite externals).
 
 # Creating VST Plugins from Pd Patches
 
-1) Create a new .pdv setup file (see the .pdv Setup File section). The file
+* Create a new .pdv setup file (see the .pdv Setup File section). The file
    must be named the same as the plugin (e.g. for a plugin named Pd_Gain you
    would create a file named Pd_Gain.pdv). Place this file and all dependant
-   files (.pd files, external Pd library .dll files, etc.) as specified above (§3 paragraph).
+   files (.pd files, external Pd library .dll files, etc.) as specified above (§ "Installation").
 
-2) Make a copy of the pdvst-template32.dll / pdvst-template64.dll file and
+* Make a copy of the pdvst-template32.dll / pdvst-template64.dll file and
    rename the same as the plugin and .pdv file (e.g. for a plugin named
    Pd_Gain you would copy pdvst-template32.dll to a new file named Pd_Gain.dll).
    Move your new plugin .dll file to the vst plugins folder of the application.
