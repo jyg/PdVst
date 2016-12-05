@@ -1,0 +1,59 @@
+# Number of audio input and output channels
+CHANNELS = 4
+
+# installation directory of puredata (optional)
+# If non specified, will search in <host_exec_dir>\pdvst\pd\ 
+# then in <vst_dir>\.pd\
+PDPATH = C:\Program Files (x86)\pd-0.47-1
+
+# Main Pd patch of the plugin
+MAIN = Pd_Gain(gui).pd
+
+# Unique four character VST plugin ID
+ID = pdgn
+
+# Whether this is a VSTi
+SYNTH = FALSE
+
+# Whether there is a custom GUI (e.g. GrIPD)
+CUSTOMGUI = TRUE
+# Dimensions of this custom GUI
+GUIHEIGHT = 220
+
+# Warning : with tcl/tk, don't try smaller values than 320
+GUIWIDTH = 320
+
+
+# Display Pd GUI or not
+# (Hint : choose TRUE if you use some pd-window as custom gui)
+DEBUG = TRUE
+
+# External libraries (comma delimited list, relative to pdvst/)
+#(obsolete, use [declare] object inside pd-patch instead)
+#LIB = ./pd/gripd/gripd, zexy
+
+# Number of VST parameters (up to 128)
+PARAMETERS = 1
+
+# Name of first VST parameter
+# used when CUSTOMGUI is false or VST host doesn't support custom editors
+NAMEPARAMETER0 = Level
+
+# Define a program (up to 128)
+PROGRAM = Full
+
+# Set first parameter value for this program
+PARAMETER0 = 1.0
+
+# Define another program 
+PROGRAM = Att -6db
+
+# Set first parameter value for this program
+PARAMETER0 = 0.94
+
+
+# Define another program 
+PROGRAM = Mute
+
+# Set first parameter value for this program
+PARAMETER0 = 0.

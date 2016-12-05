@@ -1,18 +1,18 @@
 # Number of audio input and output channels
-CHANNELS = 4
+CHANNELS = 2
 
 # installation directory of puredata (optional)
 # If non specified, defaults to <host_exec_dir>/pdvst/pd/bin)
 PDPATH = C:\Program Files (x86)\pd-0.47-1
 
 # Main Pd patch of the plugin
-MAIN = Pd_Gain(gui).pd
+MAIN = Pd_Midi.pd
 
 # Unique four character VST plugin ID
-ID = pdgn
+ID = pdmd
 
 # Whether this is a VSTi
-SYNTH = FALSE
+SYNTH = TRUE
 
 # Whether there is a custom GUI (e.g. GrIPD)
 CUSTOMGUI = TRUE
@@ -29,7 +29,7 @@ DEBUG = TRUE
 
 # External libraries (comma delimited list, relative to pdvst/)
 #(obsolete, use [declare] object inside pd-patch instead)
-#LIB = ./pd/gripd/gripd, zexy
+#LIB =
 
 # Number of VST parameters (up to 128)
 PARAMETERS = 1

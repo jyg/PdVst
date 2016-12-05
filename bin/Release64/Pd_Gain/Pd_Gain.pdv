@@ -2,11 +2,11 @@
 CHANNELS = 2
 
 # installation directory of puredata (optional)
-# If non specified, will search in <host_exec_dir>/pdvst/pd/ 
-# then in <vst_dir>/.pd/
+# If non specified, will search in <host_exec_dir>\pdvst\pd\ 
+# then in <vst_dir>\.pd\
 PDPATH = C:\Program Files (x86)\pd-0.47-1
 
-# Main Pd patch of the plugin (relative to pdvst/ in host's path)
+# Main Pd patch of the plugin
 MAIN = Pd_Gain.pd
 
 # Unique four character VST plugin ID

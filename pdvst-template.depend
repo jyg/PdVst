@@ -174,7 +174,7 @@
 	"audioeffectx.h"
 	"aeffeditor.h"
 
-1480933702 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvstmain.cpp
+1480934483 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvstmain.cpp
 	<windows.h>
 	<math.h>
 	"pdvst.hpp"

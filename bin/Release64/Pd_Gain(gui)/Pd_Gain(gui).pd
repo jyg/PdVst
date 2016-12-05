@@ -1,0 +1,127 @@
+#N canvas 0 0 320 200 12;
+#X obj 5 5 cnv 15 300 190 empty gui-label empty 10 12 0 14 -233017
+-66577 0;
+#X obj 13 53 vsl 60 128 0 1 0 0 level-snd level-rcv LEVEL 0 -9 0 10
+-262144 -1 -1 12700 1;
+#N canvas 432 50 763 599 clik_here 0;
+#X obj 27 521 r rvstplugname;
+#X msg 25 549 \; gui-label label \$1;
+#X text 163 518 <- receiving plug & instance name from host;
+#X obj 25 94 r rvstopengui;
+#X obj 27 121 select 0 1;
+#X obj 104 218 delay 100;
+#X obj 18 289 delay 10;
+#X obj 22 427 loadbang;
+#X msg 21 454 1;
+#X msg 58 454 0;
+#N canvas 0 50 746 518 audio_stuff 0;
+#X obj 104 322 adc~;
+#X obj 104 401 dac~;
+#X msg 47 286 \$1 30;
+#X obj 47 311 line~;
+#X obj 143 371 *~;
+#X obj 104 371 *~;
+#X obj 48 47 r rvstparameter0;
+#X obj 48 229 * 100;
+#X obj 47 253 dbtorms;
+#X msg 79 81 set \$1;
+#X obj 80 189 s svstparameter0;
+#X obj 79 107 s level-rcv;
+#X obj 80 144 r level-snd;
+#X text 192 107 update pd-slider when parameter is changed from host
+;
+#X text 230 168 update host when parameter is changed from pd-slider
+;
+#X text 19 12 audio stuff example;
+#X obj 315 283 loadbang;
+#X msg 315 312 \; pd dsp 1 \;;
+#X obj 368 463 tabwrite~ scope;
+#X obj 375 433 metro 120;
+#X obj 366 403 loadbang;
+#X obj 280 413 *~ 5;
+#X obj 280 438 clip~ -1 1;
+#X connect 0 0 5 0;
+#X connect 0 1 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 1;
+#X connect 3 0 5 1;
+#X connect 4 0 1 1;
+#X connect 4 0 21 0;
+#X connect 5 0 1 0;
+#X connect 5 0 21 0;
+#X connect 6 0 7 0;
+#X connect 6 0 9 0;
+#X connect 7 0 8 0;
+#X connect 8 0 2 0;
+#X connect 9 0 11 0;
+#X connect 12 0 10 0;
+#X connect 12 0 7 0;
+#X connect 16 0 17 0;
+#X connect 19 0 18 0;
+#X connect 20 0 19 0;
+#X connect 21 0 22 0;
+#X connect 22 0 18 0;
+#X restore 494 396 pd audio_stuff;
+#X text 157 93 <- the host signals when gui has to be visible;
+#X obj 17 360 s pd-Pd_Gain(gui).pd;
+#X msg 17 316 vis 0;
+#X msg 102 179 vis 1;
+#X obj 65 152 t b b;
+#X text 77 313 hide gui window;
+#X obj 103 268 s guiName;
+#X msg 103 242 symbol Pd_Gain(gui);
+#X text 184 361 (rename with the name of your gui window);
+#X text 189 178 display gui window;
+#X text 165 122 0 = hide \, 1 = show;
+#X text 269 242 <- send to host the title of your gui window;
+#X text 23 12 In order to embed a puredata (tcl) gui window into host
+\, the patch has to process values received from host (rvstopengui)
+\, and send to it the title of the window to be embedded., f 61;
+#N canvas 0 50 450 300 hidePdConsole 0;
+#X obj 78 48 inlet;
+#X obj 76 149 hcs/sys_gui;
+#X msg 75 117 wm withdraw .pdwindow;
+#X msg 248 114 wm iconify .pdwindow;
+#X obj 79 79 select 1 0;
+#X connect 0 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 2 0;
+#X connect 4 1 3 0;
+#X restore 19 485 pd hidePdConsole;
+#X text 163 485 (needs hcs/sys_gui external);
+#X text 20 401 Hiding pd-console window on startup;
+#X connect 0 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 4 1 15 0;
+#X connect 5 0 18 0;
+#X connect 6 0 13 0;
+#X connect 7 0 8 0;
+#X connect 8 0 24 0;
+#X connect 9 0 24 0;
+#X connect 13 0 12 0;
+#X connect 14 0 12 0;
+#X connect 15 0 5 0;
+#X connect 15 1 14 0;
+#X connect 18 0 17 0;
+#X restore 179 153 pd clik_here;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array scope 100 float 1;
+#A 0 0.0120017 0.01093 0.0205092 0.0199866 0.0334137 0.0408141 0.0407083
+0.0354635 0.0352543 0.0261222 0.0292804 0.0303844 0.0262234 0.0262244
+0.0258114 0.0276817 0.0343642 0.0335802 0.043073 0.0508348 0.0471792
+0.0541502 0.0494419 0.0478117 0.0465745 0.049811 0.0697258 0.0687386
+0.068782 0.070806 0.0697849 0.0722273 0.0658059 0.0576134 0.058993
+0.0453921 0.0446735 0.0291523 0.01722 0.0161883 0.0189342 0.015324
+0.0141761 0.009169 0.00916395 0.00294849 0.00657172 -0.000565621 -0.0108081
+-0.00192815 0.0117839 0.00812018 0.0168036 0.0196905 0.0190535 0.0123095
+0.0151215 0.0216715 0.0217007 0.0277566 0.030129 0.0272351 0.0296913
+0.0378916 0.035837 0.0441096 0.0516444 0.0512755 0.0371303 0.0308574
+0.0251148 0.0202121 0.0100943 0.0186519 0.00282788 -0.00534501 -0.00923869
+-0.010688 -0.0183791 -0.0127274 -0.0162285 -0.0366336 -0.0404434 -0.0398979
+-0.0328527 -0.0381706 -0.025368 -0.0234396 -0.0288079 -0.0179484 -0.0152769
+-0.0219497 -0.00522777 -0.0112143 -0.0169845 -0.0203673 -0.0235753
+-0.0359857 -0.0402326 -0.0320016;
+#X coords 0 1 99 -1 120 70 1 0 0;
+#X restore 138 57 graph;
