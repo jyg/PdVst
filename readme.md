@@ -8,8 +8,8 @@ Source code available here : https://github.com/jyg/pure-data/tree/master/pdvst
 # How does it work ?
 
 PdVst consists of two main parts : 
-1) a vst-plugin (pdvst-template32.dll, pdvst-template64.dll) to place in your favorite vst folder.
-2) a custom external scheduler (vstschedlib.dll) to copy in the pure-data /bin folder
+* a vst-plugin (pdvst-template32.dll, pdvst-template64.dll) to place in your favorite vst folder.
+* a custom external scheduler (vstschedlib.dll) to copy in the pure-data /bin folder
 
 When a PdVst plugin is opened by the host application, a setup file (*.pdv) is read to determine
 information about the plugin, such as the Pd patch file to use, the number of parameters, etc...  
