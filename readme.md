@@ -68,7 +68,8 @@ For an example, see Pd_Gain.pdv.
     (example : PDPATH = C:\Program Files (x86)\pd-0.47-1\  )
     If this line is not specified, for compatibility with older version, the program will first
     look for pd.exe in <host_exec_dir>\pdvst\pd\bin. 
-    If there is not an existing pd installation in <host_exec_dir>\pdvst\, the program will then look for pd.exe in <VST_FOLDER>\.pd\ 
+    If there is not an existing pd installation in <host_exec_dir>\pdvst\, the program will then
+    look for pd.exe in <VST_FOLDER>\.pd\ 
 
     MAIN = <string>
     The .pd file for Pd to open when the plugin is opened. 
