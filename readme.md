@@ -125,13 +125,9 @@ further with the VST host. Special Pd send/receive symbols can be used in your P
 For an example, see the pd-gain.pd file.
 
 * rvstparameter<integer> : Use this symbol to receive parameter values from the VST host. Values will be floats between 0 and 1 inclusive. 
-
 * svstparameter<integer> : Use this symbol to send parameter values to the VST host. Values should be floats between 0 and 1 inclusive. 
-
 * rvstopengui : Use this symbol to receive notification that the patch's GUI should be opened or closed. The value will be either 1 or 0. 
-  
 * rvstplugname : Use this symbol to receive plug & instance name from host
- 
 * vstTimeInfo (play head information support) : 
 
 vstTimeInfo.ppqPos, vstTimeInfo.tempo, vstTimeInfo.timeSigNumerator, vstTimeInfo.timeSigDenominator, vstTimeInfo.flags are experimental receivers for getting time infos from host. Names should change in the future.
