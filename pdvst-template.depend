@@ -109,7 +109,7 @@
 	"audioeffect.h"
 	<windows.h>
 
-1480686696 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvst.cpp
+1480931264 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvst.cpp
 	"pdvst.hpp"
 	<malloc.h>
 	<process.h>
@@ -119,8 +119,11 @@
 	<math.h>
 	<time.h>
 	<ctype.h>
+	<sys/stat.h>
+	<fstream>
+	<unistd.h>
 
-1480722283 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvst.hpp
+1480892185 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvst.hpp
 	"audioeffectx.h"
 	"pdvstEditor.hpp"
 	<stdio.h>
@@ -143,7 +146,7 @@
 1458553756 d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\pluginterfaces\vst2.x\aeffectx.h
 	"aeffect.h"
 
-1475576165 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsteditor.hpp
+1480874224 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsteditor.hpp
 	<stdio.h>
 	<windows.h>
 	"aeffeditor.h"
@@ -154,7 +157,7 @@
 1475476344 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsttransfer.h
 	<stdio.h>
 
-1475785372 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsteditor.cpp
+1480934013 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsteditor.cpp
 	"pdvstEditor.hpp"
 	"pdvst.hpp"
 	<stdio.h>
@@ -171,10 +174,11 @@
 	"audioeffectx.h"
 	"aeffeditor.h"
 
-1480712559 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvstmain.cpp
+1480933702 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvstmain.cpp
 	<windows.h>
 	<math.h>
 	"pdvst.hpp"
+	<unistd.h>
 	"audioeffect.h"
 	<windows.h>
 

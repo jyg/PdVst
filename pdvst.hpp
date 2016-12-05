@@ -114,9 +114,11 @@ protected:
     int pdOutFrameCount;
     pdVstBuffer *audioBuffer;
     char pluginPath[MAXFILENAMELEN];
+    char vstPluginPath[MAXFILENAMELEN];
     char pluginName[MAXSTRLEN];
     long pluginId;
     char pdFile[MAXFILENAMELEN];
+    char errorMessage[MAXFILENAMELEN];
     char externalLib[MAXEXTERNS][MAXSTRLEN];
     float vstParam[MAXPARAMS];
     char **vstParamName;
@@ -126,7 +128,9 @@ protected:
     int nChannels;
     int nExternalLibs;
     bool customGui;
-    bool vstEditWindowHide;
+    int customGuiHeight;
+    int customGuiWidth;
+
     bool isASynth;
     bool dspActive;
     HANDLE pdvstTransferMutex,

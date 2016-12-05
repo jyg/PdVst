@@ -30,13 +30,13 @@
 #include <windows.h>
 
 extern HINSTANCE hInstance;
+//extern int pdGuiWindowHeight, pdGuiWindowWidth;
 int useCount = 0;
 
 pdvstEditor::pdvstEditor(AudioEffect *effect)
            : AEffEditor(effect)
 {
    systemWindowHidden=false;
-    vstEditWindowHide=((pdvst *)this->effect)->vstEditWindowHide;
    effect->setEditor(this);
 
    editWindow = NULL;
@@ -49,7 +49,7 @@ pdvstEditor::~pdvstEditor()
 
 bool pdvstEditor::getRect(ERect **erect)
 {
-    static ERect r = {0,0,300,300};
+    static ERect r = {0,0,((pdvst *)this->effect)->customGuiHeight,((pdvst *)this->effect)->customGuiWidth};
    *erect = &r;
     return (true);
 }
@@ -92,7 +92,7 @@ bool pdvstEditor::open(void *ptr)
  //((pdvst *)this->effect)->sendPlugName((char *) ((pdvst *)this->effect)->displayString );
     //////
     editWindow = CreateWindowEx(0, "pdvstWindowClass", "Window",
-                                WS_CHILD | WS_VISIBLE, 10, 10, 300,200,
+                                WS_CHILD | WS_VISIBLE, 0,0,((pdvst *)this->effect)->customGuiWidth,((pdvst *)this->effect)->customGuiHeight,
                                 (HWND)systemWindow, NULL, hInstance, NULL);
    SetWindowLongPtr(editWindow, GWLP_USERDATA, (LONG_PTR)this);
 
@@ -111,7 +111,7 @@ void pdvstEditor::close()
 {
 
 
-   // if(vstEditWindowHide&&systemWindowHidden)
+
        if (pdGuiWindow)
        {
         // detach pdGuiWindow from editWindow
@@ -178,11 +178,15 @@ void pdvstEditor::idle()
                DWORD style = GetWindowLong(pdGuiWindow,GWL_STYLE);
               // style = style & ~(WS_POPUPWINDOW);
                 style = style & ~(WS_POPUP);
-               style = style | WS_CHILD;
+               style = style & ~(WS_CHILD);    // WS_CHILD Crashes tcltk with reaper
                style = style & ~(WS_SYSMENU);
                style = style & ~(WS_BORDER);
+               style = style & ~(WS_HSCROLL);
+                style = style & ~(WS_VSCROLL);
+                style = style & ~(WS_SIZEBOX);
+                style = style & ~(WS_CAPTION);
                 SetWindowLong(pdGuiWindow,GWL_STYLE,style);
-
+                MoveWindow(pdGuiWindow, 0,0,((pdvst *)this->effect)->customGuiWidth,((pdvst *)this->effect)->customGuiHeight,TRUE);
                 systemWindowHidden=true;
                 }
                 }

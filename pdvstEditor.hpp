@@ -54,7 +54,6 @@ protected:
 private:
     void *systemWindow;
     bool systemWindowHidden;
-    bool vstEditWindowHide;
     enumparms parms;
 
 };

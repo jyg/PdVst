@@ -30,6 +30,9 @@
 #include <time.h>
 #include <ctype.h>
 #include <sys/stat.h>
+#include <fstream>
+#include <unistd.h>
+
 
 #ifdef _MSC_VER
 #define stat _stat
@@ -45,19 +48,52 @@ extern int globalNExternalLibs;
 extern char globalExternalLib[MAXEXTERNS][MAXSTRLEN];
 extern char globalVstParamName[MAXPARAMETERS][MAXSTRLEN];
 extern char globalPluginPath[MAXFILENAMELEN];
+extern char globalVstPluginPath[MAXFILENAMELEN];  // chemin d'accès dans le dossier vst contenant la dll)
 extern char globalPluginName[MAXSTRLEN];
 extern char globalPdFile[MAXFILENAMELEN];
 extern char globalPureDataPath[MAXFILENAMELEN];
+extern char globalHostPdvstPath[MAXFILENAMELEN];
 extern bool globalCustomGui;
-extern bool globalVstEditWindowHide;
+extern int globalCustomGuiWidth;
+extern int globalCustomGuiHeight;
+
 extern bool globalIsASynth;
 extern pdvstProgram globalProgram[MAXPROGRAMS];
 
 int pdvst::referenceCount = 0;
 
 
-
-
+   /* change '/' characters to the system's native file separator */
+void sys_bashfilename(const char *from, char *to)
+{
+    char c;
+    while ((c = *from++))
+    {
+#ifdef _WIN32
+        if (c == '/') c = '\\';
+#endif
+        *to++ = c;
+    }
+    *to = 0;
+}
+    /* change the system's native file separator to '/' characters  */
+void sys_unbashfilename(const char *from, char *to)
+{
+    char c;
+    while ((c = *from++))
+    {
+#ifdef _WIN32
+        if (c == '\\') c = '/';
+#endif
+        *to++ = c;
+    }
+    *to = 0;
+}
+bool fexists(const char *filename)
+{
+  std::ifstream ifile(filename);
+  return ifile;
+}
 
 
 //-------------------------------------------------------------------------------------------------------
@@ -73,7 +109,8 @@ pdvst::pdvst(audioMasterCallback audioMaster)
     // copy global data
     isASynth = globalIsASynth;
     customGui = globalCustomGui;
-    vstEditWindowHide = globalVstEditWindowHide;
+    customGuiHeight = globalCustomGuiHeight;
+    customGuiWidth = globalCustomGuiWidth;
     nChannels = globalNChannels;
     nPrograms = globalNPrograms;
     nParameters = globalNParams;
@@ -117,6 +154,7 @@ pdvst::pdvst(audioMasterCallback audioMaster)
         strcpy(vstParamName[i], globalVstParamName[i]);
     }
     strcpy(pluginPath, globalPluginPath);
+    strcpy(vstPluginPath, globalVstPluginPath);
     strcpy(pluginName, globalPluginName);
     strcpy(pdFile, globalPdFile);
     debugLog("path: %s", pluginPath);
@@ -223,7 +261,7 @@ void pdvst::startPd()
     STARTUPINFO si;
     PROCESS_INFORMATION pi;
     char commandLineArgs[MAXSTRLEN],
-         debugString[MAXSTRLEN];
+         debugString[MAXSTRLEN],pathToCheck[MAXSTRLEN];
 
     ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
@@ -267,18 +305,52 @@ void pdvst::startPd()
     {
         strcpy(debugString, " -nogui");
     }
-    if (strcmp(globalPureDataPath, "") == 0)  // unspecified puredata path. Defaults to pluginPath
-        sprintf(commandLineArgs, "\"%s\\pd\\bin\\pd.exe\"", pluginPath);
+    if (strcmp(globalPureDataPath, "") == 0)  // unspecified puredata path. Defaults to globalHostPdvstPath
+        {
+            sprintf(commandLineArgs, "%s\\pd\\bin\\pd.exe", globalHostPdvstPath);
+             if( access( commandLineArgs, F_OK ) != -1 )   // check if file exists
+                sprintf(commandLineArgs, "\"%s\\pd\\bin\\pd.exe\"", globalHostPdvstPath);
+             else
+             {
+                 sprintf(commandLineArgs, "%s..\\.pd\\bin\\pd.exe", globalPluginPath);
+                  //MessageBox(NULL,commandLineArgs,"commandLineArgs...",MB_OK);
+                 if( access( commandLineArgs, F_OK ) != -1 )   // check if file exists
+                    sprintf(commandLineArgs, "\"%s..\\.pd\\bin\\pd.exe\"", globalPluginPath);
+                 else
+                    {
+                        sprintf(errorMessage,"pd.exe program not found in \n1: %spd\\bin\\\n2: %s..\\.pd\\bin\\\nCheck your settings in \n%s%s.pdv",
+                                globalHostPdvstPath,globalPluginPath,globalPluginPath,globalPluginName);
+                        MessageBox(NULL,errorMessage,"ERROR",MB_OK);
+                        return;
+                    }
+             }
+        }
     else
         {
-            sprintf(commandLineArgs, "\"%s\\bin\\pd.exe\"", globalPureDataPath);
+            sprintf(commandLineArgs, "%s\\bin\\pd.exe", globalPureDataPath);
+            if ( access( commandLineArgs, F_OK ) != -1 )   // file exists
+                sprintf(commandLineArgs,"\"%s\\bin\\pd.exe\"", globalPureDataPath);
+            else
+                 {
+                    sprintf(errorMessage,"pd.exe program not found. Check your settings in \n%s%s.pdv \n setup file. (search for the line PDPATH)",
+                            globalPluginPath,globalPluginName);
+                    MessageBox(NULL,errorMessage,"ERROR",MB_OK);
+                    return;
+                }
+        }
+
+
+
+           // if (!fexists(commandLineArgs))
+           //   sprintf(commandLineArgs, "\"%s\\pd\\bin\\pd.exe\"", pluginPath);
             // check validity of pd.exe path
-            /// condition if toujours vérifiée. Peut-être utiliser sys_bash_filename en amont ?
-          /*  struct stat statbuf;
-            if (stat(commandLineArgs, &statbuf) < 0)
+         /*
+            struct stat statbuf;
+            sys_bashfilename(commandLineArgs, pathToCheck);
+            if (stat(pathToCheck, &statbuf) < 0)
                 // if failed, use defaults
                 sprintf(commandLineArgs, "\"%s\\pd\\bin\\pd.exe\"", pluginPath);*/
-        }
+
 
     sprintf(commandLineArgs,
             "%s%s",
@@ -411,37 +483,33 @@ void pdvst::resume()
 void pdvst::setProgram(VstInt32 prgmNum)
 {
    int i;
-    if (prgmNum >= 0 && prgmNum < MAXPROGRAMS)
+    if (prgmNum >= 0 && prgmNum < nPrograms)
         {
             curProgram = prgmNum;
-        }
+
 
    // {JYG    to prevent host call of setProgram to override current param settings
    // see https://www.kvraudio.com/forum/viewtopic.php?p=6391144
-
-    if ((GetTickCount()-timeFromStartup) < 1000)
-    {
-        return;
-    }
-    else
-    {
-        if (prgmNum >= 0 && prgmNum < MAXPROGRAMS)
-        {
-            curProgram = prgmNum;
-            for (i = 0; i < MAXPARAMETERS; i++)
+           // sprintf(errorMessage,"GetTickCount=%d\ntimeFromStartup=%d",
+             //       GetTickCount(),timeFromStartup);
+            //MessageBox(NULL, errorMessage,"setProgram",MB_OK);
+            if ((GetTickCount()-timeFromStartup) < 1000)
+                return;
+            else
             {
-                setParameter(i, program[curProgram].paramValue[i]);
+               for (i = 0; i < nParameters; i++)
+                {
+                    setParameter(i, program[curProgram].paramValue[i]);
+                  //  MessageBox(NULL,"setvalue","setProgram",MB_OK);
+                }
             }
-        }
-    }
+   }
+
 }
 
 VstInt32 pdvst::getProgram()
 {
-       //  {JYG   see pdvst::setProgram below for explanation
-    timeFromStartup=GetTickCount();
-    //  JYG  }
-    return curProgram;
+   return curProgram;
 }
 
 void pdvst::setProgramName(char *name)
@@ -452,6 +520,9 @@ void pdvst::setProgramName(char *name)
 void pdvst::getProgramName(char *name)
 {
     strcpy(name, program[curProgram].name);
+        //  {JYG   see pdvst::setProgram below for explanation
+    timeFromStartup=GetTickCount();
+    //  JYG  }
 }
 
 void pdvst::setParameter(VstInt32 index, float value)

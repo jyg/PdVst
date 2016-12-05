@@ -20,6 +20,7 @@
 #include <windows.h>
 #include <math.h>
 #include "pdvst.hpp"
+#include <unistd.h>
 
 static AudioEffect *effect = 0;
 bool oome = false;
@@ -34,11 +35,14 @@ long globalPluginId = 'pdvp';
 char globalExternalLib[MAXEXTERNS][MAXSTRLEN];
 char globalVstParamName[MAXPARAMS][MAXSTRLEN];
 char globalPluginPath[MAXFILENAMELEN];
+char globalVstPluginPath[MAXFILENAMELEN];
 char globalPluginName[MAXSTRLEN];
 char globalPdFile[MAXFILENAMELEN];
 char globalPureDataPath[MAXFILENAMELEN];
+char globalHostPdvstPath[MAXFILENAMELEN];
 bool globalCustomGui = false;
-bool globalVstEditWindowHide = true;
+int globalCustomGuiWidth= 320;
+int globalCustomGuiHeight= 150;
 pdvstProgram globalProgram[MAXPROGRAMS];
 
 char *trimWhitespace(char *str);
@@ -133,12 +137,15 @@ void parseSetupFile()
     char line[MAXSTRLEN];
     char param[MAXSTRLEN];
     char value[MAXSTRLEN];
+    char vstDataPath[MAXSTRLEN];
+    char vstSetupFileName[MAXSTRLEN];  // path to setup file if it is located in vst subdir
     int i, equalPos, progNum = -1;
 
     // find filepaths
     GetModuleFileName((HMODULE)hInstance,
 					  (LPTSTR)tFileName,
 					  (DWORD)MAXFILENAMELEN);
+
     if (strrchr(tFileName, '\\'))
     {
         strcpy(globalPluginName, strrchr(tFileName, '\\') + 1);
@@ -147,6 +154,36 @@ void parseSetupFile()
     {
         strcpy(globalPluginName, tFileName);
     }
+
+     // alternate setup file path in vst plugins folder
+     if (strrchr(tFileName, '\\'))
+     {
+
+        strcpy(vstDataPath, tFileName);
+		*(strrchr(vstDataPath, '\\') + 1) = 0;
+		sprintf(vstDataPath, "%s%s\\", vstDataPath,globalPluginName);
+		 // remove .dll extension (from globalPluginName)
+        if (strstr(vstDataPath, ".dll"))
+        *(strstr(vstDataPath, ".dll")) = 0;
+        if (strstr(vstDataPath, ".DLL"))
+        *(strstr(vstDataPath, ".DLL")) = 0;
+        sprintf(vstDataPath, "%s\\", vstDataPath);  //
+        // path to alternate setup file
+        sprintf(vstSetupFileName,"%s%s",vstDataPath,globalPluginName);
+        // remove .dll extension
+        if (strstr(vstSetupFileName, ".dll"))
+        *(strstr(vstSetupFileName, ".dll")) = 0;
+        if (strstr(vstSetupFileName, ".DLL"))
+        *(strstr(vstSetupFileName, ".DLL")) = 0;
+        // add SETUPFILEEXT extension
+        sprintf(vstSetupFileName,"%s%s",vstSetupFileName,SETUPFILEEXT);
+        //MessageBox(NULL, vstDataPath,"vstDataPath",MB_OK) ;
+        //MessageBox(NULL, vstSetupFileName,"vstSetupFileName",MB_OK) ;
+
+
+     }
+
+
     GetModuleFileName(NULL,
 					  (LPTSTR)tFileName,
 					  (DWORD)MAXFILENAMELEN);
@@ -160,6 +197,8 @@ void parseSetupFile()
     {
         strcpy(globalPluginPath, tFileName);
     }
+     strcpy(globalHostPdvstPath,globalPluginPath);
+
     // remove .dll extension
     if (strstr(strlwr(globalPluginName), ".dll"))
         *(strstr(strlwr(globalPluginName), ".dll")) = 0;
@@ -168,7 +207,13 @@ void parseSetupFile()
             globalPluginPath,
             globalPluginName,
             SETUPFILEEXT);
+
+
+
     // initialize program info
+
+
+
     strcpy(globalProgram[0].name, "Default");
     memset(globalProgram[0].paramValue, 0, MAXPARAMS * sizeof(float));
     // initialize parameter info
@@ -176,8 +221,20 @@ void parseSetupFile()
     for (i = 0; i < MAXPARAMS; i++)
         strcpy(globalVstParamName[i], "<unnamed>");
     globalNPrograms = 1;
-    // parse the setup file
-    setupFile = fopen(setupFileName, "r");
+
+
+    // check existence of setup file in vst-subfolder
+    if( access(vstSetupFileName, F_OK ) != -1 )
+        // if exists choose this alternate file
+    {
+        setupFile = fopen(vstSetupFileName, "r");
+        //strcpy(setupFileName,vstSetupFileName);
+        strcpy(globalPluginPath,vstDataPath);
+
+    }
+    else
+       setupFile = fopen(setupFileName, "r");
+     // parse the setup file
     if (setupFile) {
         while (fgets(line, sizeof(line), setupFile))
         {
@@ -196,12 +253,13 @@ void parseSetupFile()
                 // main PD patch
                 if (strcmp(param, "main") == 0)
                 {
-                     strcpy(globalPdFile, strlwr(value));
-
+                    // strcpy(globalPdFile, strlwr(value));
+                    strcpy(globalPdFile, value);
                 }
                 if (strcmp(param, "pdpath") == 0)
                  {
-                     strcpy(globalPureDataPath, strlwr(value));
+                    // strcpy(globalPureDataPath, strlwr(value));
+                      strcpy(globalPureDataPath, value);
 
                 }
                 // vst plugin ID
@@ -253,21 +311,21 @@ void parseSetupFile()
                     if (strcmp(strlwr(value), "true") == 0)
                     {
                         globalCustomGui = true;
-                        // As we don't know how to embed any pd-tk-window inside vst-editor HWND,
-                        // we use some trickery (hide vst-editor, popup pd-patch window on top)
-                        globalVstEditWindowHide = true;
                     }
                     else if (strcmp(strlwr(value), "false") == 0)
                     {
                         globalCustomGui = false;
-                        globalVstEditWindowHide = false;
                     }
-                    else if (strcmp(strlwr(value), "legacy") == 0)
-                           // With some vst-hosts the native vst-editor has to be used
-                    {
-                        globalCustomGui = true;
-                        globalVstEditWindowHide = false;
-                    }
+
+                }
+                 // custom gui height
+                if (strcmp(param, "guiheight") == 0)
+                   globalCustomGuiHeight = atoi(value);
+
+                 // custom gui width
+                if (strcmp(param, "guiwidth") == 0)
+                {
+                    globalCustomGuiWidth = atoi(value);
 
                 }
 				// debug (show Pd GUI)
