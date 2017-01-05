@@ -25,19 +25,19 @@ your current pure-data installation (>= 0.47-1) with your favorite externals).
    of your current pure-data installation
      
 * Copy your plugin .dll file (e.g. Pd_Gain.dll) to the vst plugins directory
-   for the application (e.g. c:\Program Files (x86)\Steinberg\Cubase VST\VstPlugins\)
+   for the application (e.g. c:/Program Files (x86)/Steinberg/Cubase VST/VstPlugins/)
 
 * New way : in the vst plugin directory, create a subdir with the name of your plugin
-   (e.g. c:\Program Files (x86)\Steinberg\Cubase VST\VstPlugins\Pd_Gain\).
+   (e.g. c:/Program Files (x86)/Steinberg/Cubase VST/VstPlugins/Pd_Gain/).
    This folder will contain the .pdv and .pd files associated to your plugin.
    
 * Old way : create a pdvst folder in the directory that contains the 
    application (e.g. Reaper.exe) that you want to use PdVst with.
-   (e.g. c:\Program Files\REAPER\pdvst\). This folder will contain the .pdv and .pd files, and
-   optionnally a copy of pure-data application  (inside c:\Program Files\REAPER\pdvst\pd\).
+   (e.g. c:/Program Files/REAPER/pdvst/). This folder will contain the .pdv and .pd files, and
+   optionnally a copy of pure-data application  (inside c:/Program Files/REAPER/pdvst/pd/).
    
-   NOTE (advanced) : if you choose the new way, you can also include an standalone version of puredata in the vst directory, simply paste it in the subfolder .pd\
-   (e.g. c:\Program Files (x86)\Steinberg\Cubase VST\VstPlugins\.pd\) 
+   NOTE (advanced) : if you choose the new way, you can also include an standalone version of puredata in the vst directory, simply paste it in the subfolder .pd/
+   (e.g. c:/Program Files (x86)/Steinberg/Cubase VST/VstPlugins/.pd/) 
 
 # Creating VST Plugins from Pd Patches
 
@@ -66,11 +66,11 @@ For an example, see Pd_Gain.pdv.
     
     PDPATH = <string>
     Path to the installation directory of pure-data program.
-    (example : PDPATH = C:\Program Files (x86)\pd-0.47-1\  )
+    (example : PDPATH = C:/Program Files (x86)/pd-0.47-1/  )
     If this line is not specified, for compatibility with older version, the program will first
-    look for pd.exe in <host_exec_dir>\pdvst\pd\bin. 
-    If there is not an existing pd installation in <host_exec_dir>\pdvst\, the program will then
-    look for pd.exe in <VST_FOLDER>\.pd\ 
+    look for pd.exe in <host_exec_dir>/pdvst/pd/bin. 
+    If there is not an existing pd installation in <host_exec_dir>/pdvst/, the program will then
+    look for pd.exe in <VST_FOLDER>/.pd/ 
 
     MAIN = <string>
     The .pd file for Pd to open when the plugin is opened. 

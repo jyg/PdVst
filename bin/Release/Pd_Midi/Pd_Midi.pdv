@@ -3,7 +3,7 @@ CHANNELS = 2
 
 # installation directory of puredata (optional)
 # If non specified, defaults to <host_exec_dir>/pdvst/pd/bin)
-PDPATH = C:\Program Files (x86)\pd-0.47-1
+PDPATH = C:/Program Files (x86)/pd-0.47-1
 
 # Main Pd patch of the plugin
 MAIN = Pd_Midi.pd
