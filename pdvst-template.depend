@@ -109,7 +109,7 @@
 	"audioeffect.h"
 	<windows.h>
 
-1480931264 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvst.cpp
+1514931826 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvst.cpp
 	"pdvst.hpp"
 	<malloc.h>
 	<process.h>
@@ -154,10 +154,10 @@
 1458756832 d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\public.sdk\source\vst2.x\aeffeditor.h
 	"audioeffectx.h"
 
-1475476344 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsttransfer.h
+1517045344 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsttransfer.h
 	<stdio.h>
 
-1480934013 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsteditor.cpp
+1515340824 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsteditor.cpp
 	"pdvstEditor.hpp"
 	"pdvst.hpp"
 	<stdio.h>

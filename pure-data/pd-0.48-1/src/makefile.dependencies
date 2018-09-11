@@ -1,0 +1,1308 @@
+g_canvas.o: g_canvas.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h m_imp.h s_stuff.h g_canvas.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h g_all_guis.h
+g_graph.o: g_graph.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h g_canvas.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+g_text.o: g_text.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h s_stuff.h \
+ g_canvas.h c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\math.h s_utf8.h
+g_rtext.o: g_rtext.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h s_stuff.h g_canvas.h s_utf8.h
+g_array.o: g_array.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h c:\mingw\include\math.h
+g_template.o: g_template.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h
+g_io.o: g_io.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h g_canvas.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+g_scalar.o: g_scalar.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h
+g_traversal.o: g_traversal.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h
+g_guiconnect.o: g_guiconnect.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h g_canvas.h
+g_readwrite.o: g_readwrite.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h
+g_editor.o: g_editor.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h m_imp.h s_stuff.h g_canvas.h s_utf8.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+g_clone.o: g_clone.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h g_canvas.h m_imp.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\malloc.h \
+ c:\mingw\include\stdlib.h
+g_all_guis.o: g_all_guis.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+g_bang.o: g_bang.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+g_hdial.o: g_hdial.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+g_hslider.o: g_hslider.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+g_mycanvas.o: g_mycanvas.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+g_numbox.o: g_numbox.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+g_toggle.o: g_toggle.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+g_vdial.o: g_vdial.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h
+g_vslider.o: g_vslider.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+g_vumeter.o: g_vumeter.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h g_canvas.h g_all_guis.h \
+ c:\mingw\include\math.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+m_pd.o: m_pd.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h g_canvas.h
+m_class.o: m_class.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h s_stuff.h \
+ g_canvas.h c:\mingw\include\stdlib.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+m_obj.o: m_obj.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h
+m_atom.o: m_atom.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+m_memory.o: m_memory.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h
+m_binbuf.o: m_binbuf.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h g_canvas.h \
+ c:\mingw\include\errno.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h \
+ c:\mingw\include\fcntl.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\malloc.h
+m_conf.o: m_conf.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h
+m_glob.o: m_glob.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h s_stuff.h
+m_sched.o: m_sched.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h s_stuff.h \
+ c:\mingw\include\windows.h c:\mingw\include\windef.h \
+ c:\mingw\include\winnt.h c:\mingw\include\winerror.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\winnls.h c:\mingw\include\winver.h \
+ c:\mingw\include\winnetwk.h c:\mingw\include\winreg.h \
+ c:\mingw\include\winsvc.h c:\mingw\include\cderr.h \
+ c:\mingw\include\dde.h c:\mingw\include\ddeml.h c:\mingw\include\dlgs.h \
+ c:\mingw\include\imm.h c:\mingw\include\lzexpand.h \
+ c:\mingw\include\mmsystem.h c:\mingw\include\nb30.h \
+ c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h
+s_main.o: s_main.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h s_stuff.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\sys\stat.h \
+ c:\mingw\include\limits.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\fcntl.h c:\mingw\include\io.h c:\mingw\include\stdint.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\windows.h \
+ c:\mingw\include\windef.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\winnls.h c:\mingw\include\winver.h \
+ c:\mingw\include\winnetwk.h c:\mingw\include\winreg.h \
+ c:\mingw\include\winsvc.h c:\mingw\include\cderr.h \
+ c:\mingw\include\dde.h c:\mingw\include\ddeml.h c:\mingw\include\dlgs.h \
+ c:\mingw\include\imm.h c:\mingw\include\lzexpand.h \
+ c:\mingw\include\mmsystem.h c:\mingw\include\nb30.h \
+ c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\objidl.h c:\mingw\include\cguid.h \
+ c:\mingw\include\olectlid.h c:\mingw\include\oleauto.h \
+ c:\mingw\include\oaidl.h c:\mingw\include\oleidl.h
+s_inter.o: s_inter.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h m_imp.h \
+ g_canvas.h c:\mingw\include\io.h c:\mingw\include\sys\types.h \
+ c:\mingw\include\stdint.h c:\mingw\include\fcntl.h \
+ c:\mingw\include\process.h c:\mingw\include\winsock.h \
+ c:\mingw\include\windows.h c:\mingw\include\windef.h \
+ c:\mingw\include\winnt.h c:\mingw\include\winerror.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\winnls.h c:\mingw\include\winver.h \
+ c:\mingw\include\winnetwk.h c:\mingw\include\winreg.h \
+ c:\mingw\include\winsvc.h c:\mingw\include\cderr.h \
+ c:\mingw\include\dde.h c:\mingw\include\ddeml.h c:\mingw\include\dlgs.h \
+ c:\mingw\include\imm.h c:\mingw\include\lzexpand.h \
+ c:\mingw\include\mmsystem.h c:\mingw\include\nb30.h \
+ c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h c:\mingw\include\mswsock.h \
+ c:\mingw\include\signal.h c:\mingw\include\errno.h \
+ c:\mingw\include\pthread.h c:\mingw\include\_ptw32.h \
+ c:\mingw\include\ptw32_errno.h c:\mingw\include\time.h \
+ c:\mingw\include\sched.h
+s_file.o: s_file.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdlib.h \
+ c:\mingw\include\errno.h c:\mingw\include\windows.h \
+ c:\mingw\include\windef.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\winnls.h c:\mingw\include\winver.h \
+ c:\mingw\include\winnetwk.h c:\mingw\include\winreg.h \
+ c:\mingw\include\winsvc.h c:\mingw\include\cderr.h \
+ c:\mingw\include\dde.h c:\mingw\include\ddeml.h c:\mingw\include\dlgs.h \
+ c:\mingw\include\imm.h c:\mingw\include\lzexpand.h \
+ c:\mingw\include\mmsystem.h c:\mingw\include\nb30.h \
+ c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\objidl.h c:\mingw\include\cguid.h \
+ c:\mingw\include\olectlid.h c:\mingw\include\oleauto.h \
+ c:\mingw\include\oaidl.h c:\mingw\include\oleidl.h \
+ c:\mingw\include\tchar.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+s_print.o: s_print.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\errno.h s_stuff.h
+s_loader.o: s_loader.c c:\mingw\include\io.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\sys\types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\stdint.h c:\mingw\include\windows.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\windef.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\basetsd.h c:\mingw\include\pshpack4.h \
+ c:\mingw\include\poppack.h c:\mingw\include\wincon.h \
+ c:\mingw\include\winbase.h c:\mingw\include\wingdi.h \
+ c:\mingw\include\winuser.h c:\mingw\include\winnls.h \
+ c:\mingw\include\winver.h c:\mingw\include\winnetwk.h \
+ c:\mingw\include\winreg.h c:\mingw\include\winsvc.h \
+ c:\mingw\include\cderr.h c:\mingw\include\dde.h c:\mingw\include\ddeml.h \
+ c:\mingw\include\dlgs.h c:\mingw\include\imm.h \
+ c:\mingw\include\lzexpand.h c:\mingw\include\mmsystem.h \
+ c:\mingw\include\nb30.h c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h s_stuff.h c:\mingw\include\sys\stat.h \
+ g_canvas.h
+s_path.o: s_path.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\sys\stat.h c:\mingw\include\sys\types.h \
+ c:\mingw\include\io.h c:\mingw\include\stdint.h \
+ c:\mingw\include\windows.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\windef.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\basetsd.h c:\mingw\include\pshpack4.h \
+ c:\mingw\include\poppack.h c:\mingw\include\wincon.h \
+ c:\mingw\include\winbase.h c:\mingw\include\wingdi.h \
+ c:\mingw\include\winuser.h c:\mingw\include\winnls.h \
+ c:\mingw\include\winver.h c:\mingw\include\winnetwk.h \
+ c:\mingw\include\winreg.h c:\mingw\include\winsvc.h \
+ c:\mingw\include\cderr.h c:\mingw\include\dde.h c:\mingw\include\ddeml.h \
+ c:\mingw\include\dlgs.h c:\mingw\include\imm.h \
+ c:\mingw\include\lzexpand.h c:\mingw\include\mmsystem.h \
+ c:\mingw\include\nb30.h c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\objidl.h c:\mingw\include\cguid.h \
+ c:\mingw\include\olectlid.h c:\mingw\include\oleauto.h \
+ c:\mingw\include\oaidl.h c:\mingw\include\oleidl.h \
+ c:\mingw\include\malloc.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h m_imp.h s_stuff.h s_utf8.h \
+ c:\mingw\include\fcntl.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h
+s_entry.o: s_entry.c
+s_audio.o: s_audio.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h \
+ c:\mingw\include\time.h c:\mingw\include\sys\types.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\errno.h
+s_midi.o: s_midi.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h m_imp.h \
+ c:\mingw\include\winsock.h c:\mingw\include\windows.h \
+ c:\mingw\include\windef.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\basetsd.h c:\mingw\include\pshpack4.h \
+ c:\mingw\include\poppack.h c:\mingw\include\wincon.h \
+ c:\mingw\include\winbase.h c:\mingw\include\wingdi.h \
+ c:\mingw\include\winuser.h c:\mingw\include\winnls.h \
+ c:\mingw\include\winver.h c:\mingw\include\winnetwk.h \
+ c:\mingw\include\winreg.h c:\mingw\include\winsvc.h \
+ c:\mingw\include\cderr.h c:\mingw\include\dde.h c:\mingw\include\ddeml.h \
+ c:\mingw\include\dlgs.h c:\mingw\include\imm.h \
+ c:\mingw\include\lzexpand.h c:\mingw\include\mmsystem.h \
+ c:\mingw\include\nb30.h c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h c:\mingw\include\mswsock.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\sys\timeb.h \
+ c:\mingw\include\signal.h
+s_utf8.o: s_utf8.c c:\mingw\include\stdlib.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\malloc.h s_utf8.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h
+d_ugen.o: d_ugen.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h \
+ c:\mingw\include\stdlib.h
+d_ctl.o: d_ctl.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\math.h \
+ s_stuff.h
+d_arithmetic.o: d_arithmetic.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h
+d_osc.o: d_osc.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\math.h \
+ c:\mingw\include\sys\param.h c:\mingw\include\sys\types.h \
+ c:\mingw\include\limits.h
+d_filter.o: d_filter.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\math.h
+d_dac.o: d_dac.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h
+d_misc.o: d_misc.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+d_math.o: d_math.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\math.h
+d_fft.o: d_fft.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h
+d_fft_fftsg.o: d_fft_fftsg.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h m_imp.h \
+ c:\mingw\include\malloc.h c:\mingw\include\stdlib.h \
+ c:\mingw\include\math.h
+d_array.o: d_array.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\sys\param.h c:\mingw\include\sys\types.h \
+ c:\mingw\include\limits.h
+d_global.o: d_global.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+d_delay.o: d_delay.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+d_resample.o: d_resample.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h
+d_soundfile.o: d_soundfile.c c:\mingw\include\pthread.h \
+ c:\mingw\include\_ptw32.h c:\mingw\include\time.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h c:\mingw\include\sched.h \
+ c:\mingw\include\io.h c:\mingw\include\stdint.h c:\mingw\include\fcntl.h \
+ c:\mingw\include\stdio.h c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\errno.h \
+ c:\mingw\include\math.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h
+x_arithmetic.o: x_arithmetic.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\math.h
+x_connective.o: x_connective.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdlib.h
+x_interface.o: x_interface.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+x_midi.o: x_midi.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h
+x_misc.o: x_misc.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h g_canvas.h \
+ c:\mingw\include\math.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpc.h \
+ c:\mingw\include\windows.h c:\mingw\include\windef.h \
+ c:\mingw\include\winnt.h c:\mingw\include\winerror.h \
+ c:\mingw\include\basetsd.h c:\mingw\include\pshpack4.h \
+ c:\mingw\include\poppack.h c:\mingw\include\wincon.h \
+ c:\mingw\include\winbase.h c:\mingw\include\wingdi.h \
+ c:\mingw\include\winuser.h c:\mingw\include\winnls.h \
+ c:\mingw\include\winver.h c:\mingw\include\winnetwk.h \
+ c:\mingw\include\winreg.h c:\mingw\include\winsvc.h \
+ c:\mingw\include\cderr.h c:\mingw\include\dde.h c:\mingw\include\ddeml.h \
+ c:\mingw\include\dlgs.h c:\mingw\include\imm.h \
+ c:\mingw\include\lzexpand.h c:\mingw\include\mmsystem.h \
+ c:\mingw\include\nb30.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\rpcndr.h c:\mingw\include\rpcnsip.h \
+ c:\mingw\include\prsht.h c:\mingw\include\winspool.h \
+ c:\mingw\include\winsock2.h c:\mingw\include\ole2.h \
+ c:\mingw\include\objbase.h c:\mingw\include\stdlib.h \
+ c:\mingw\include\objidl.h c:\mingw\include\cguid.h \
+ c:\mingw\include\olectlid.h c:\mingw\include\oleauto.h \
+ c:\mingw\include\oaidl.h c:\mingw\include\oleidl.h \
+ c:\mingw\include\time.h c:\mingw\include\sys\types.h \
+ c:\mingw\include\malloc.h
+x_time.o: x_time.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+x_acoustics.o: x_acoustics.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\math.h
+x_net.o: x_net.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\winsock.h c:\mingw\include\windows.h \
+ c:\mingw\include\windef.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\winnls.h c:\mingw\include\winver.h \
+ c:\mingw\include\winnetwk.h c:\mingw\include\winreg.h \
+ c:\mingw\include\winsvc.h c:\mingw\include\cderr.h \
+ c:\mingw\include\dde.h c:\mingw\include\ddeml.h c:\mingw\include\dlgs.h \
+ c:\mingw\include\imm.h c:\mingw\include\lzexpand.h \
+ c:\mingw\include\mmsystem.h c:\mingw\include\nb30.h \
+ c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h c:\mingw\include\mswsock.h \
+ c:\mingw\include\malloc.h
+x_text.o: x_text.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h g_canvas.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h \
+ c:\mingw\include\malloc.h c:\mingw\include\stdlib.h
+x_gui.o: x_gui.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+x_list.o: x_list.c m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\malloc.h \
+ c:\mingw\include\stdlib.h
+x_array.o: x_array.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h g_canvas.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h \
+ c:\mingw\include\malloc.h c:\mingw\include\stdlib.h
+x_scalar.o: x_scalar.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h g_canvas.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h
+x_vexp.o: x_vexp.c c:\mingw\include\string.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\ctype.h \
+ c:\mingw\include\wctype.h x_vexp.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h c:\mingw\include\errno.h
+x_vexp_if.o: x_vexp_if.c c:\mingw\include\stdio.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\stdlib.h x_vexp.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h
+x_vexp_fun.o: x_vexp_fun.c c:\mingw\include\stdlib.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\math.h x_vexp.h m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h
+s_audio_pa.o: s_audio_pa.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\fcntl.h c:\mingw\include\io.h \
+ c:\mingw\include\sys\types.h c:\mingw\include\stdint.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ c:\mingw\include\malloc.h c:\mingw\include\windows.h \
+ c:\mingw\include\windef.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\winnls.h c:\mingw\include\winver.h \
+ c:\mingw\include\winnetwk.h c:\mingw\include\winreg.h \
+ c:\mingw\include\winsvc.h c:\mingw\include\cderr.h \
+ c:\mingw\include\dde.h c:\mingw\include\ddeml.h c:\mingw\include\dlgs.h \
+ c:\mingw\include\imm.h c:\mingw\include\lzexpand.h \
+ c:\mingw\include\mmsystem.h c:\mingw\include\nb30.h \
+ c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\objidl.h c:\mingw\include\cguid.h \
+ c:\mingw\include\olectlid.h c:\mingw\include\oleauto.h \
+ c:\mingw\include\oaidl.h c:\mingw\include\oleidl.h s_audio_paring.h
+s_audio_paring.o: s_audio_paring.c c:\mingw\include\stdio.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\math.h s_audio_paring.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h
+s_audio_mmio.o: s_audio_mmio.c m_pd.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h s_stuff.h \
+ c:\mingw\include\windows.h c:\mingw\include\windef.h \
+ c:\mingw\include\winnt.h c:\mingw\include\winerror.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\winnls.h c:\mingw\include\winver.h \
+ c:\mingw\include\winnetwk.h c:\mingw\include\winreg.h \
+ c:\mingw\include\winsvc.h c:\mingw\include\cderr.h \
+ c:\mingw\include\dde.h c:\mingw\include\ddeml.h c:\mingw\include\dlgs.h \
+ c:\mingw\include\imm.h c:\mingw\include\lzexpand.h \
+ c:\mingw\include\mmsystem.h c:\mingw\include\nb30.h \
+ c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h
+pa_stream.o: ../../pd-0.48-1/portaudio/portaudio/src/common/pa_stream.c \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_stream.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h
+pa_trace.o: ../../pd-0.48-1/portaudio/portaudio/src/common/pa_trace.c \
+ c:\mingw\include\stdio.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\assert.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_trace.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_util.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_debugprint.h
+pa_process.o: ../../pd-0.48-1/portaudio/portaudio/src/common/pa_process.c \
+ c:\mingw\include\assert.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\string.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_process.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_converters.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_dither.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_types.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_util.h
+pa_front.o: ../../pd-0.48-1/portaudio/portaudio/src/common/pa_front.c \
+ c:\mingw\include\stdio.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\memory.h c:\mingw\include\string.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\assert.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_util.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_endianness.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_types.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_hostapi.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_stream.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_trace.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_debugprint.h
+pa_dither.o: ../../pd-0.48-1/portaudio/portaudio/src/common/pa_dither.c \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_types.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_dither.h
+pa_cpuload.o: ../../pd-0.48-1/portaudio/portaudio/src/common/pa_cpuload.c \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_cpuload.h \
+ c:\mingw\include\assert.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_util.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h
+pa_converters.o: \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_converters.c \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_converters.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_dither.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_types.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_endianness.h
+pa_allocation.o: \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_allocation.c \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_allocation.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_util.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h
+pa_ringbuffer.o: \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_ringbuffer.c \
+ c:\mingw\include\stdio.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\math.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_ringbuffer.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_memorybarrier.h
+pa_win_coinitialize.o: \
+ ../../pd-0.48-1/portaudio/portaudio/src/os/win/pa_win_coinitialize.c \
+ c:\mingw\include\windows.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\windef.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\string.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\basetsd.h c:\mingw\include\pshpack4.h \
+ c:\mingw\include\poppack.h c:\mingw\include\wincon.h \
+ c:\mingw\include\winbase.h c:\mingw\include\wingdi.h \
+ c:\mingw\include\winuser.h c:\mingw\include\winnls.h \
+ c:\mingw\include\winver.h c:\mingw\include\winnetwk.h \
+ c:\mingw\include\winreg.h c:\mingw\include\winsvc.h \
+ c:\mingw\include\cderr.h c:\mingw\include\dde.h c:\mingw\include\ddeml.h \
+ c:\mingw\include\dlgs.h c:\mingw\include\imm.h \
+ c:\mingw\include\lzexpand.h c:\mingw\include\mmsystem.h \
+ c:\mingw\include\nb30.h c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_util.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_debugprint.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/os/win/pa_win_coinitialize.h
+pa_win_hostapis.o: \
+ ../../pd-0.48-1/portaudio/portaudio/src/os/win/pa_win_hostapis.c \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_hostapi.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h
+pa_win_util.o: \
+ ../../pd-0.48-1/portaudio/portaudio/src/os/win/pa_win_util.c \
+ c:\mingw\include\windows.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\windef.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\string.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\basetsd.h c:\mingw\include\pshpack4.h \
+ c:\mingw\include\poppack.h c:\mingw\include\wincon.h \
+ c:\mingw\include\winbase.h c:\mingw\include\wingdi.h \
+ c:\mingw\include\winuser.h c:\mingw\include\winnls.h \
+ c:\mingw\include\winver.h c:\mingw\include\winnetwk.h \
+ c:\mingw\include\winreg.h c:\mingw\include\winsvc.h \
+ c:\mingw\include\cderr.h c:\mingw\include\dde.h c:\mingw\include\ddeml.h \
+ c:\mingw\include\dlgs.h c:\mingw\include\imm.h \
+ c:\mingw\include\lzexpand.h c:\mingw\include\mmsystem.h \
+ c:\mingw\include\nb30.h c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_util.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h
+pa_win_waveformat.o: \
+ ../../pd-0.48-1/portaudio/portaudio/src/os/win/pa_win_waveformat.c \
+ c:\mingw\include\windows.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\windef.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\winnt.h \
+ c:\mingw\include\winerror.h c:\mingw\include\string.h \
+ c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\strings.h c:\mingw\include\wchar.h \
+ c:\mingw\include\basetsd.h c:\mingw\include\pshpack4.h \
+ c:\mingw\include\poppack.h c:\mingw\include\wincon.h \
+ c:\mingw\include\winbase.h c:\mingw\include\wingdi.h \
+ c:\mingw\include\winuser.h c:\mingw\include\winnls.h \
+ c:\mingw\include\winver.h c:\mingw\include\winnetwk.h \
+ c:\mingw\include\winreg.h c:\mingw\include\winsvc.h \
+ c:\mingw\include\cderr.h c:\mingw\include\dde.h c:\mingw\include\ddeml.h \
+ c:\mingw\include\dlgs.h c:\mingw\include\imm.h \
+ c:\mingw\include\lzexpand.h c:\mingw\include\mmsystem.h \
+ c:\mingw\include\nb30.h c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\objidl.h \
+ c:\mingw\include\cguid.h c:\mingw\include\olectlid.h \
+ c:\mingw\include\oleauto.h c:\mingw\include\oaidl.h \
+ c:\mingw\include\oleidl.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/pa_win_waveformat.h
+pa_win_wmme.o: \
+ ../../pd-0.48-1/portaudio/portaudio/src/hostapi/wmme/pa_win_wmme.c \
+ c:\mingw\include\stdio.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h \
+ c:\mingw\include\stdlib.h c:\mingw\include\math.h \
+ c:\mingw\include\windows.h c:\mingw\include\windef.h \
+ c:\mingw\include\winnt.h c:\mingw\include\winerror.h \
+ c:\mingw\include\string.h c:\mingw\include\strings.h \
+ c:\mingw\include\wchar.h c:\mingw\include\basetsd.h \
+ c:\mingw\include\pshpack4.h c:\mingw\include\poppack.h \
+ c:\mingw\include\wincon.h c:\mingw\include\winbase.h \
+ c:\mingw\include\wingdi.h c:\mingw\include\winuser.h \
+ c:\mingw\include\winnls.h c:\mingw\include\winver.h \
+ c:\mingw\include\winnetwk.h c:\mingw\include\winreg.h \
+ c:\mingw\include\winsvc.h c:\mingw\include\cderr.h \
+ c:\mingw\include\dde.h c:\mingw\include\ddeml.h c:\mingw\include\dlgs.h \
+ c:\mingw\include\imm.h c:\mingw\include\lzexpand.h \
+ c:\mingw\include\mmsystem.h c:\mingw\include\nb30.h \
+ c:\mingw\include\rpc.h c:\mingw\include\rpcdce.h \
+ c:\mingw\include\basetyps.h c:\mingw\include\rpcdcep.h \
+ c:\mingw\include\rpcnsi.h c:\mingw\include\rpcnterr.h \
+ c:\mingw\include\shellapi.h c:\mingw\include\pshpack2.h \
+ c:\mingw\include\winperf.h c:\mingw\include\commdlg.h \
+ c:\mingw\include\unknwn.h c:\mingw\include\objfwd.h \
+ c:\mingw\include\wtypes.h c:\mingw\include\rpcndr.h \
+ c:\mingw\include\rpcnsip.h c:\mingw\include\prsht.h \
+ c:\mingw\include\winspool.h c:\mingw\include\winsock2.h \
+ c:\mingw\include\ole2.h c:\mingw\include\objbase.h \
+ c:\mingw\include\objidl.h c:\mingw\include\cguid.h \
+ c:\mingw\include\olectlid.h c:\mingw\include\oleauto.h \
+ c:\mingw\include\oaidl.h c:\mingw\include\oleidl.h \
+ c:\mingw\include\process.h c:\mingw\include\sys\types.h \
+ c:\mingw\include\stdint.h c:\mingw\include\assert.h \
+ c:\mingw\include\malloc.h c:\mingw\include\memory.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_trace.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_util.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_allocation.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_hostapi.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_stream.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_cpuload.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_process.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_converters.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_dither.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_types.h \
+ ../../pd-0.48-1/portaudio/portaudio/src/common/pa_debugprint.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/pa_win_wmme.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/portaudio.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/pa_win_waveformat.h \
+ ../../pd-0.48-1/portaudio/portaudio/include/pa_win_waveformat.h
+g_all_guis.o: g_all_guis.h
+m_imp.o: m_imp.h
+g_canvas.o: g_canvas.h
+m_pd.o: m_pd.h c:\mingw\lib\gcc\mingw32\5.3.0\include\stddef.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdint.h \
+ c:\mingw\include\stdint.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\stdio.h \
+ c:\mingw\include\sys/types.h \
+ c:\mingw\lib\gcc\mingw32\5.3.0\include\stdarg.h
+s_stuff.o: s_stuff.h
+s_audio_paring.o: s_audio_paring.h

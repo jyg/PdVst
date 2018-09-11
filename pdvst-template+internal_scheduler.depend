@@ -1,0 +1,89 @@
+# depslib dependency file v1.0
+1480934483 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvstmain.cpp
+	<windows.h>
+	<math.h>
+	"pdvst.hpp"
+	<unistd.h>
+	"audioeffect.h"
+	<windows.h>
+
+1480892185 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvst.hpp
+	"audioeffectx.h"
+	"pdvstEditor.hpp"
+	<stdio.h>
+	<string.h>
+	<ctype.h>
+	<stdarg.h>
+	"pdvstTransfer.h"
+
+1458553791 d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\public.sdk\source\vst2.x\audioeffectx.h
+	"audioeffect.h"
+	"pluginterfaces/vst2.x/aeffectx.h"
+
+1458553791 d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\public.sdk\source\vst2.x\audioeffect.h
+	"pluginterfaces/vst2.x/aeffect.h"
+
+1458553756 d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\pluginterfaces\vst2.x\aeffect.h
+	<string.h>
+	<stdint.h>
+
+1458553756 d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\pluginterfaces\vst2.x\aeffectx.h
+	"aeffect.h"
+
+1480874224 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsteditor.hpp
+	<stdio.h>
+	<windows.h>
+	"aeffeditor.h"
+
+1458756832 d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\public.sdk\source\vst2.x\aeffeditor.h
+	"audioeffectx.h"
+
+1517045344 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsttransfer.h
+	<stdio.h>
+
+1458553791 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\public.sdk\source\vst2.x\audioeffect.cpp
+	"audioeffect.h"
+	"aeffeditor.h"
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+
+1458553791 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\vst3 sdk\public.sdk\source\vst2.x\audioeffectx.cpp
+	"audioeffectx.h"
+	"aeffeditor.h"
+
+1514931826 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvst.cpp
+	"pdvst.hpp"
+	<malloc.h>
+	<process.h>
+	<windows.h>
+	<string.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	<ctype.h>
+	<sys/stat.h>
+	<fstream>
+	<unistd.h>
+
+1515340824 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\pdvsteditor.cpp
+	"pdvstEditor.hpp"
+	"pdvst.hpp"
+	<stdio.h>
+	<windows.h>
+
+1517045199 source:d:\users\jyg\projets\git\jyg\pure-data\pdvst\vstschedlib.c
+	<windows.h>
+	<io.h>
+	<stdio.h>
+	"./pure-data/pd-0.48-1/src/m_pd.h"
+	"./pure-data/pd-0.48-1/src/s_stuff.h"
+	"pdvstTransfer.h"
+
+1515359742 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pure-data\pd-0.48-1\src\m_pd.h
+	<stddef.h>
+	<stdint.h>
+	<stdio.h>
+
+1515359742 d:\users\jyg\projets\git\jyg\pure-data\pdvst\pure-data\pd-0.48-1\src\s_stuff.h
+

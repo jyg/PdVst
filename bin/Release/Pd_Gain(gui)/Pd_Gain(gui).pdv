@@ -4,7 +4,7 @@ CHANNELS = 4
 # installation directory of puredata (optional)
 # If non specified, will search in <host_exec_dir>\pdvst\pd\ 
 # then in <vst_dir>\.pd\
-PDPATH = C:\Program Files (x86)\pd-0.47-1
+PDPATH = D:\Programs\pd-0.48-1-test\
 
 # Main Pd patch of the plugin
 MAIN = Pd_Gain(gui).pd

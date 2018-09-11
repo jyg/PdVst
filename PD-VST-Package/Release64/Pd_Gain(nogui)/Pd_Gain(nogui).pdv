@@ -1,0 +1,49 @@
+# Number of audio input and output channels
+CHANNELS = 2
+
+# installation directory of puredata (optional)
+# If non specified, will search in <host_exec_dir>\pdvst\pd\ 
+# then in <vst_dir>\.pd\
+PDPATH = D:\Programs\pd-0.48-1-test\
+
+# Main Pd patch of the plugin
+MAIN = Pd_Gain(nogui).pd
+
+# Unique four character VST plugin ID
+ID = pdgn
+
+# Whether this is a VSTi
+SYNTH = FALSE
+
+# Whether there is a custom GUI (e.g. GrIPD)
+CUSTOMGUI = FALSE
+
+# Display Pd GUI or not
+DEBUG = FALSE
+
+# External libraries (comma delimited list, relative to pdvst/)
+# ***OBSOLETE, use [declare] inside patch instead*** 
+#LIB = 
+
+# Number of VST parameters (up to 128)
+PARAMETERS = 1
+
+# Name of first VST parameter
+# used when CUSTOMGUI is false or VST host doesn't support custom editors
+NAMEPARAMETER0 = Level
+
+# Define a program (up to 128)
+PROGRAM = Full Blast
+
+# Set first parameter value for this program
+PARAMETER0 = 1.0
+
+#another program
+PROGRAM = Muted
+
+PARAMETER0 = 0.0
+
+#another program
+PROGRAM = -6dB
+
+PARAMETER0 = 0.94

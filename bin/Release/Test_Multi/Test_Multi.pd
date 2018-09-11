@@ -1,0 +1,5 @@
+#N canvas 435 212 451 109 12;
+#X obj 57 63 s pd;
+#X msg 19 14 open RackPdVST.pd C:/Users/jyg/Desktop/pd/Patches/2015/RackPd/v0.5.5
+;
+#X connect 1 0 0 0;

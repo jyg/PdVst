@@ -1,0 +1,13 @@
+name: pd_robosonik
+synth: 0
+channels: 2
+path: D:\Users\jyg\Projets\git\jyg\pure-data\pdvst\bin\Release64\Pd_Robosonik\
+nParameters = 0
+nPrograms = 1
+    Default
+startingPd...
+command line: "D:\Programs\pd-0.48-1-test\\bin\pd.exe" -schedlib vstschedlib -extraflags "-vstproceventname vstprocevent98645a100a0 -pdproceventname pdprocevent98645a100a0 -vsthostid 9864 -mutexname mutex98645a100a0 -filemapname filemap98645a100a0" -outchannels 2 -inchannels 2 -r 44100 -open "D:\Users\jyg\Projets\git\jyg\pure-data\pdvst\bin\Release64\Pd_Robosonik\Pd_Robosonik.pd" -path "D:\Users\jyg\Projets\git\jyg\pure-data\pdvst\bin\Release64\Pd_Robosonik\"
+done
+appel de setProgram 0, prgmNum
+appel de setProgram 0, prgmNum
+appel de setProgram 0, prgmNum

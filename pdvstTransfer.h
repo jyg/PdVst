@@ -29,9 +29,9 @@
 #define MAXSTRINGSIZE 4096
 #define MAXMIDIQUEUESIZE 1024
 
-#ifdef VSTMIDIOUTENABLE
+//#ifdef VSTMIDIOUTENABLE
     #define MAXMIDIOUTQUEUESIZE 1024
-#endif // VSTMIDIOUTENABLE
+//#endif // VSTMIDIOUTENABLE
 
 
 
@@ -122,12 +122,12 @@ typedef struct _pdvstTransferData
 	pdvstParameter guiState;
 	pdvstParameter plugName;  // transmitted by host
 	pdvstParameter guiName;   // transmitted by pd : name of gui window to be embedded
-    #ifdef VSTMIDIOUTENABLE
+ //   #ifdef VSTMIDIOUTENABLE
     int midiOutQueueSize;
     int midiOutQueueUpdated;
 	pdvstMidiMessage midiOutQueue[MAXMIDIOUTQUEUESIZE];
 
-    #endif // VSTMIDIOUTENABLE
+ //   #endif // VSTMIDIOUTENABLE
     pdvstTimeInfo  hostTimeInfo;
 
 } pdvstTransferData;

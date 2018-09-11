@@ -1,0 +1,22 @@
+# Number of audio input and output channels
+CHANNELS = 2
+
+# installation directory of puredata (optional)
+# If non specified, defaults to <host_exec_dir>/pdvst/pd/bin)
+PDPATH = D:\Programs\pd-0.48-1-test\
+
+# Main Pd patch of the plugin
+MAIN = Pd_Robosonik.pd
+
+# Unique four character VST plugin ID
+ID = pdmd
+
+# Whether this is a VSTi
+SYNTH = FALSE
+
+# Whether there is a custom GUI (e.g. GrIPD)
+CUSTOMGUI = FALSE
+
+# Display Pd GUI or not
+# (Hint : choose TRUE if you use some pd-window as custom gui)
+DEBUG = TRUE

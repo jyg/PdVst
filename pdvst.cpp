@@ -106,6 +106,10 @@ AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
 pdvst::pdvst(audioMasterCallback audioMaster)
       :AudioEffectX(audioMaster, globalNPrograms, globalNParams)
 {
+     // set debug output
+    debugFile = fopen("pdvstdebug.txt", "wt");
+    // debugFile = NULL;
+
     // copy global data
     isASynth = globalIsASynth;
     customGui = globalCustomGui;
@@ -133,9 +137,7 @@ pdvst::pdvst(audioMasterCallback audioMaster)
     int i, j;
 
 
-    // set debug output
-    debugFile = fopen("pdvstdebug.txt", "wt");
-    // debugFile = NULL;
+
     // initialize memory
     vstParamName = new char*[MAXPARAMETERS];
     for (i = 0; i < MAXPARAMETERS; i++)
@@ -210,8 +212,10 @@ pdvst::pdvst(audioMasterCallback audioMaster)
 
 
         //timeBeginPeriod(1);
+    debugLog("startingPd...");
     // start pd.exe
     startPd();
+    debugLog("done");
     //setProgram(curProgram);
     referenceCount++;
 
@@ -409,7 +413,7 @@ void pdvst::startPd()
 
 void pdvst::sendGuiAction(int action)
 {
-   WaitForSingleObject(pdvstTransferMutex, 10000);//  if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+   WaitForSingleObject(pdvstTransferMutex, 10);//  if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
    {
         pdvstData->guiState.direction = PD_RECEIVE;
         pdvstData->guiState.type = FLOAT_TYPE;
@@ -421,7 +425,8 @@ void pdvst::sendGuiAction(int action)
 
 void pdvst::sendPlugName(char * pName )     // pour envoyer le nom du plugin à puredata
 {
-     WaitForSingleObject(pdvstTransferMutex, 10000);//if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+
+     WaitForSingleObject(pdvstTransferMutex, 10);//if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
     {
         pdvstData->plugName.direction = PD_RECEIVE;
         pdvstData->plugName.type = STRING_TYPE;
@@ -433,7 +438,8 @@ void pdvst::sendPlugName(char * pName )     // pour envoyer le nom du plugin à p
 
 void pdvst::setSyncToVst(int value)
 {
-   if (WaitForSingleObject(pdvstTransferMutex, 500)==WAIT_OBJECT_0)
+
+   if (WaitForSingleObject(pdvstTransferMutex, 10)==WAIT_OBJECT_0)
     {
         if (pdvstData->syncToVst != value)
         {
@@ -482,6 +488,7 @@ void pdvst::resume()
 
 void pdvst::setProgram(VstInt32 prgmNum)
 {
+   debugLog("appel de setProgram %d", prgmNum);
    int i;
     if (prgmNum >= 0 && prgmNum < nPrograms)
         {
@@ -530,7 +537,7 @@ void pdvst::setParameter(VstInt32 index, float value)
     if (vstParam[index] != value)
     {
         vstParam[index] = value;
-        WaitForSingleObject(pdvstTransferMutex, 10000);// if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+        WaitForSingleObject(pdvstTransferMutex, 10);// if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
         {
             pdvstData->vstParameters[index].type = FLOAT_TYPE;
             pdvstData->vstParameters[index].value.floatData = value;
@@ -610,7 +617,7 @@ void pdvst::process(float **input, float **output, VstInt32 sampleFrames)
 {
    #ifdef VSTMIDIOUTENABLE
 
-     WaitForSingleObject(pdvstTransferMutex, 100);//if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+     WaitForSingleObject(pdvstTransferMutex, 10);//if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
     {
         if (pdvstData->midiOutQueueUpdated)
         {
@@ -691,7 +698,7 @@ sendMessageAnything(m_patch_tie, s_measure, m_measure_list);
             // wait for pd process event
             //   { JYG
             //WaitForSingleObject(pdProcEvent, 10000);///int couldSync = WaitForSingleObject(pdProcEvent, 100)!= WAIT_TIMEOUT;
-            WaitForSingleObject(pdProcEvent,100);
+            WaitForSingleObject(pdProcEvent,10);
             //WaitForSingleObject(pdProcEvent, 10000);
             /// JYG: 10000 était une valeur trop élevée qui faisait planter ableton live 8.04, va savoir pourquoi
             // JYG }
@@ -765,7 +772,7 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
 {
    #ifdef VSTMIDIOUTENABLE
 
-    if (WaitForSingleObject(pdvstTransferMutex, 1000)==WAIT_OBJECT_0)
+    if (WaitForSingleObject(pdvstTransferMutex, 10)==WAIT_OBJECT_0)
     {
         if (pdvstData->midiOutQueueUpdated)
         {
@@ -824,7 +831,7 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
 
       if(infos)
         {
-            if (WaitForSingleObject(pdvstTransferMutex, 100)==WAIT_OBJECT_0)
+            if (WaitForSingleObject(pdvstTransferMutex, 10)==WAIT_OBJECT_0)
             {
 
                 pdvstData->hostTimeInfo.updated=1;
@@ -875,7 +882,7 @@ void pdvst::processReplacing(float **input, float **output, VstInt32 sampleFrame
             updatePdvstParameters();
             // wait for pd process event
             //   { JYG
-            int gotPdProcEvent = (WaitForSingleObject(pdProcEvent, 100)==WAIT_OBJECT_0);
+            int gotPdProcEvent = (WaitForSingleObject(pdProcEvent, 10)==WAIT_OBJECT_0);
            // WaitForSingleObject(pdProcEvent,100);
             //WaitForSingleObject(pdProcEvent, 10000);
             // JYG: 10000 était une valeur trop élevée qui faisait planter ableton live
@@ -962,7 +969,7 @@ VstInt32 pdvst::processEvents(VstEvents* ev)
     long statusType;
     long statusChannel;
 
-       WaitForSingleObject(pdvstTransferMutex, 1000);/// if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
+       WaitForSingleObject(pdvstTransferMutex, 10);/// if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
         // valeur d'attente courte (1000 au lieu de 10000 dans pdvst 0.2)
 
     {
@@ -1042,7 +1049,7 @@ void pdvst::updatePdvstParameters()
     int i;
 
 
-    WaitForSingleObject(pdvstTransferMutex, 100);
+    WaitForSingleObject(pdvstTransferMutex, 10);
    // WaitForSingleObject(pdvstTransferMutex, 10000);///if (WaitForSingleObject(pdvstTransferMutex, 100)!= WAIT_TIMEOUT)
     {
         for (i = 0; i < pdvstData->nParameters; i++)

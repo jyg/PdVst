@@ -1,0 +1,3 @@
+; C:\MinGW\bin\dlltool --base-file C:\Users\jyg\AppData\Local\Temp\cca06776.base --output-exp ../extra/pd~/pd~.exp --dllname ../extra/pd~/pd~.dll --output-def ../extra/pd~/pd~.def --exclude-symbol=DllMainCRTStartup@12 --def C:\Users\jyg\AppData\Local\Temp\cca06776.def --output-lib ../extra/pd~/pd~.a
+EXPORTS
+	pd_tilde_setup @ 1

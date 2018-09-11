@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="pdvst-ext_scheduler" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option show_notes="0">
+			<notes>
+				<![CDATA[voir différence entre mutex et event, entre reset et release
+
+Voir pourquoi la synchro se perd au bout de 2 secondes dans live quand custom gui n'est pas activé.]]>
+			</notes>
+		</Option>
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/vstschedlib" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="pure-data/pd-0.48-1/src/pd.a" />
+				</Linker>
+			</Target>
+			<Target title="Release64">
+				<Option platforms="Windows;" />
+				<Option output="bin/Release64/vstschedlib" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release64/" />
+				<Option type="3" />
+				<Option compiler="mingw_64_bits_compiler" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-m64" />
+					<Add option="-DPD_LONGINTTYPE=__int64" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-m64" />
+					<Add library="D:/Programs/Pd-0.48-1-all-w64/pd-0.48-1-w64-tcltk-w64/bin/pd.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="VST3 SDK/public.sdk/source/vst2.x" />
+			<Add directory="VST3 SDK" />
+		</Compiler>
+		<Unit filename="vstschedlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
