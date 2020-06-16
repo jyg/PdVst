@@ -1,4 +1,5 @@
-# PDVST 0.41  - 30/01/2018  -   maintained by Jean-Yves Gratius  jyg@gumo.fr 
+# PDVST 0.41  - 30/01/2018  -  
+maintained by Jean-Yves Gratius  jyg@gumo.fr 
 This is the updated version of pdvst (vst 2.4, pd 0.47-1) based on initial work by Joseph Sarlo. PdVst is an extension that allows Pd patches (and pd.exe programm) to run as VST plugins (Windows 32/64 only).
 
 Binaries are here : 
