@@ -1,3 +1,6 @@
+Project is now maintained here
+https://git.nubegris.com.ar/lucarda/pdvst-0.52
+
 # PDVST 0.41  - 30/01/2018  -  
 ## maintained by Jean-Yves Gratius  jyg@gumo.fr 
 
